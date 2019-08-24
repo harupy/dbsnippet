@@ -4,7 +4,8 @@ const SnippetContext = React.createContext([]);
 
 export class SnippetProvider extends React.Component {
   state = {
-    snippets: [{ prefix: 'yes', body: 'bar' }, { prefix: 'no', body: 'bar' }],
+    snippets: [],
+    updated: false,
   };
 
   componentDidMount = () => {
@@ -17,24 +18,24 @@ export class SnippetProvider extends React.Component {
     });
   };
 
-  setSnippets = snippets => {
-    this.setState({ snippets });
-  };
+  setSnippets = snippets => this.setState({ snippets, updated: true });
+
+  setUpdated = bool => this.setState({ updated: bool });
 
   addSnippet = snippet => {
-    this.setState({ snippets: [...this.state.snippets, snippet] });
+    this.setState({ snippets: [...this.state.snippets, snippet], updated: true });
   };
 
   removeSnippet = index => {
     const snippets = [...this.state.snippets];
     snippets.splice(index, 1);
-    this.setState({ snippets });
+    this.setState({ snippets, updated: true });
   };
 
   updateSnippet = (event, index) => {
     const snippets = [...this.state.snippets];
     snippets[index][event.target.name] = event.target.value;
-    this.setState({ snippets });
+    this.setState({ snippets, updated: true });
   };
 
   render() {
@@ -42,7 +43,9 @@ export class SnippetProvider extends React.Component {
       <SnippetContext.Provider
         value={{
           snippets: this.state.snippets,
+          updated: this.state.updated,
           setSnippets: this.setSnippets,
+          setUpdated: this.setUpdated,
           addSnippet: this.addSnippet,
           removeSnippet: this.removeSnippet,
           updateSnippet: this.updateSnippet,

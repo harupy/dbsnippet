@@ -64,9 +64,10 @@ const Table = () => {
               Add a New Snippet
             </button>
             <button
-              className="ui button"
+              className={`ui button ${context.updated ? 'positive' : ''}`}
               onClick={() => {
                 saveSnippets();
+                context.setUpdated(false);
                 setMessage('Successfully saved!');
               }}
             >
