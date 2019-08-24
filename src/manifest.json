@@ -1,0 +1,20 @@
+{
+  "name": "DBSnippet",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "description": "Enhance the editor functionality of Databricks notebooks",
+  "icons": {
+    "48": "img/logo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.databricks.com/*"],
+      "js": ["dist/contentScript.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "dist/options.html",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "web_accessible_resources": ["dist/main.js", "dist/options.js"],
+  "permissions": ["storage"]
+}
