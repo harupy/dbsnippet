@@ -59,13 +59,13 @@ const Row = ({ prefix, body, index, removeSnippet, updateSnippet }) => {
       <td>
         <div>{colorText(body)}</div>
       </td>
-      <td>
+      <td style={{ textAlign: 'middle' }}>
         <div
-          className="ui button negative"
+          className="ui icon basic button"
           style={{ width: '100%' }}
           onClick={() => removeSnippet(index)}
         >
-          Delete
+          <i className="trash big icon" style={{ color: '#db2828' }}></i>
         </div>
       </td>
     </tr>
