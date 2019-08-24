@@ -32,18 +32,28 @@ const colorText = body => {
 
 const Row = ({ prefix, body, index, removeSnippet, updateSnippet }) => {
   return (
-    <tr>
+    <tr style={{ fontFamily: 'monospace' }}>
       <td>
         <span>{index}</span>
       </td>
       <td>
         <div className="ui input" style={{ width: '100%' }}>
-          <input name="prefix" value={prefix} onChange={e => updateSnippet(e, index)} />
+          <input
+            name="prefix"
+            value={prefix}
+            onChange={e => updateSnippet(e, index)}
+            style={{ fontFamily: 'monospace' }}
+          />
         </div>
       </td>
       <td>
         <div className="ui input" style={{ width: '100%' }}>
-          <input name="body" value={body} onChange={e => updateSnippet(e, index)} />
+          <input
+            name="body"
+            value={body}
+            onChange={e => updateSnippet(e, index)}
+            style={{ fontFamily: 'monospace' }}
+          />
         </div>
       </td>
       <td>
