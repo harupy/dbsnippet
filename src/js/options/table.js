@@ -105,7 +105,7 @@ const Table = () => {
             </label>
 
             <h3 className="ui green header" style={{ marginTop: 15 }}>
-              {message}
+              {context.updated ? '' : message}
             </h3>
           </div>
         );
