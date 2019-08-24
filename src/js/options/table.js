@@ -43,11 +43,13 @@ const Table = () => {
                 <tr>
                   <th>ID</th>
                   <th>Prefix</th>
-                  <th>Body</th>
+                  <th>{'Body ( ${...} : placholder)'}</th>
                   <th>
-                    Result
-                    <br />
-                    (red: selected area after expansion)
+                    Result (&nbsp;
+                    <span style={{ backgroundColor: 'lightblue', fontFamily: 'monospace' }}>
+                      &nbsp;&nbsp;&nbsp;
+                    </span>
+                    &nbsp;: selection after expansion)
                   </th>
                   <th>Delete</th>
                 </tr>

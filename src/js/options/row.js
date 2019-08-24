@@ -21,11 +21,11 @@ const colorText = body => {
   const others = ranges.concat({ start: newBody.length }).map((range, idx, arr) => {
     return newBody.slice(idx > 0 ? arr[idx - 1].end : 0, range.start);
   });
-  const style = { color: 'black', backgroundColor: 'lightblue' };
+  const style = { backgroundColor: 'lightblue' };
   return others.map((o, idx) => (
     <span key={idx}>
       {o}
-      <mark style={style}>{hints[idx]}</mark>
+      <span style={style}>{hints[idx]}</span>
     </span>
   ));
 };
