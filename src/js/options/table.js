@@ -58,13 +58,13 @@ const Table = () => {
             </table>
 
             <button
-              className="ui button primary"
+              className="ui button"
               onClick={() => context.addSnippet({ prefix: '', body: '' })}
             >
               Add a New Snippet
             </button>
             <button
-              className="ui button positive"
+              className="ui button"
               onClick={() => {
                 saveSnippets();
                 setMessage('Successfully saved!');
