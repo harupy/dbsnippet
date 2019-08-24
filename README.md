@@ -2,9 +2,7 @@
 
 A Chrome extension to provide snippets on Databricks. I hope this extension helps Databricks users all over the world.
 
-<kbd>
-  <img width="70%" src="https://user-images.githubusercontent.com/17039389/63638189-e2f0dd00-c6bf-11e9-92a0-a27c6bcb346d.gif">
-</kbd>
+<img width="70%" src="https://user-images.githubusercontent.com/17039389/63638189-e2f0dd00-c6bf-11e9-92a0-a27c6bcb346d.gif">
 
 ## Installation
 
