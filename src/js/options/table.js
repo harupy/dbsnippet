@@ -59,6 +59,25 @@ const Table = () => {
             >
               Save Snippets
             </button>
+            <a
+              className="ui button"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="snippets.json"
+              href={
+                'data:application/json;charset=utf-8;,' +
+                encodeURIComponent(
+                  JSON.stringify(
+                    context.snippets.reduce(
+                      (prev, { prefix, body }) => ({ ...prev, [prefix]: body }),
+                      {},
+                    ),
+                  ),
+                )
+              }
+            >
+              Export Snippets
+            </a>
             <div>{message}</div>
           </div>
         );
