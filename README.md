@@ -35,8 +35,10 @@ A Chrome extension to provide snippets on Databricks. I hope this extension help
 You can add your own snippets on the option page (which is implemented using React).
 
 1. Click the extension logo and select `options`.
-2. Add new snippets.
+2. Update the snippets.
 3. Click the save button.
+
+![custom snippet](./src/img/custom_snippet.png)
 
 ## How this extension works?
 
