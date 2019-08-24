@@ -16,6 +16,10 @@ A Chrome extension to provide snippets on Databricks. I hope this extension help
 1. Type `dp` and press `Tab` (`dp` will be expanded to `display()`).
 1. Type `df.gb` and press `Tab` (`gb` will be expanded to `groupBy()`).
 
+## Installation
+
+[DBSnippet](https://chrome.google.com/webstore/detail/dbsnippet/lnnfckpmnjkjakgjiinhlnlkmeoodlhb?hl=en&authuser=0)
+
 ## Build from the Source
 
 1. Clone this repository.
