@@ -65,7 +65,7 @@ const Row = ({ prefix, body, index, removeSnippet, updateSnippet }) => {
           style={{ width: '100%' }}
           onClick={() => removeSnippet(index)}
         >
-          <i className="trash big icon" style={{ color: '#db2828' }}></i>
+          <i className="trash alternate big icon" style={{ color: '#db2828' }}></i>
         </div>
       </td>
     </tr>

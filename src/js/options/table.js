@@ -103,7 +103,9 @@ const Table = () => {
               Import Snippets
             </label>
 
-            <div>{message}</div>
+            <h3 className="ui green header" style={{ marginTop: 15 }}>
+              {message}
+            </h3>
           </div>
         );
       }}
