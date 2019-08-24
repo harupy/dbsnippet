@@ -14,6 +14,17 @@ const Table = () => {
           );
         };
 
+        const handleFile = file => {
+          const reader = new FileReader();
+          reader.onload = event => {
+            const snippets = JSON.parse(event.target.result);
+            context.setSnippets(
+              Object.entries(snippets).map(([prefix, body]) => ({ prefix, body })),
+            );
+          };
+          reader.readAsText(file);
+        };
+
         const rows = context.snippets.map(({ prefix, body }, index) => (
           <Row
             prefix={prefix}
@@ -78,6 +89,18 @@ const Table = () => {
             >
               Export Snippets
             </a>
+            <input
+              className="ui button"
+              id="importButton"
+              style={{ display: 'None' }}
+              type="file"
+              onChange={e => handleFile(e.target.files[0])}
+              accept=".json"
+            />
+            <label className="ui button" htmlFor="importButton">
+              Import Snippets
+            </label>
+
             <div>{message}</div>
           </div>
         );

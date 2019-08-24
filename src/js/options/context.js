@@ -17,7 +17,7 @@ export class SnippetProvider extends React.Component {
     });
   };
 
-  setSnippet = snippets => {
+  setSnippets = snippets => {
     this.setState({ snippets });
   };
 
@@ -42,6 +42,7 @@ export class SnippetProvider extends React.Component {
       <SnippetContext.Provider
         value={{
           snippets: this.state.snippets,
+          setSnippets: this.setSnippets,
           addSnippet: this.addSnippet,
           removeSnippet: this.removeSnippet,
           updateSnippet: this.updateSnippet,
