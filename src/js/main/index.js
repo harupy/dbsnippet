@@ -1,4 +1,3 @@
-import enableShortcuts from './shortcuts';
 import enableSnippets from './snippets';
 
 (() => {
@@ -7,7 +6,6 @@ import enableSnippets from './snippets';
 
     if (cellEditing) {
       const cm = cellEditing.CodeMirror;
-      enableShortcuts(cm);
       enableSnippets(cm);
     }
   };
