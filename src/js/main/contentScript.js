@@ -2,7 +2,7 @@
   // get snippets from storage and inject it using textarea
   chrome.storage.sync.get(null, items => {
     const ta = document.createElement('textarea');
-    ta.value = JSON.stringify(items);
+    ta.textContent = JSON.stringify(items);
     ta.id = 'user-snippets';
     ta.style = 'display: none';
     (document.head || document.documentElement).appendChild(ta);

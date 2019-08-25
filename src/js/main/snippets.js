@@ -1,6 +1,6 @@
 import * as cu from './cursorUtils';
 
-const userSnippets = JSON.parse(document.querySelector('textarea#user-snippets').value);
+const userSnippets = JSON.parse(document.querySelector('textarea#user-snippets').textContent);
 
 const defaultSnippets = {
   // ${...} represents the placeholder
