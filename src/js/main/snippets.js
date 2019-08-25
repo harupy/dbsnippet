@@ -1,5 +1,6 @@
 import * as cu from './cursorUtils';
 
+// content script injects a textarea tag which contains user snippets as its text content
 const userSnippets = JSON.parse(document.querySelector('textarea#user-snippets').textContent);
 
 const defaultSnippets = {
@@ -132,7 +133,11 @@ const defaultSnippets = {
   af: 'ascending=False',
 };
 
+// override default sippets with user custom snippets
+const snippets = { ...defaultSnippets, ...userSnippets };
+
 const replacePlaceholder = (body, ranges = []) => {
+  // recursive function to replace placeholders and return their ranges
   const pattern = /\$\{([^{}]*)\}/;
   const match = body.match(pattern);
   if (!match) {
@@ -145,8 +150,6 @@ const replacePlaceholder = (body, ranges = []) => {
     return replacePlaceholder(newBody, [...ranges, { head, anchor }]);
   }
 };
-
-const snippets = { ...defaultSnippets, ...userSnippets };
 
 const escapeRegExp = string => {
   const reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
@@ -170,14 +173,16 @@ const expandSnippet = cm => {
   const args = pieces.length > 1 ? pieces.slice(1) : [];
 
   if (prefix && prefix in snippets) {
+    // TODO: add some comments here
     const body = snippets[prefix];
-    const selections = cm.listSelections();
+    const selections = cm.listSelections(); // for multiple selections
     const rangesToReplace = selections.map(({ anchor, head }) => {
       const len = (prefix + ['', ...args].join(argSep)).length;
       return { anchor, head: { line: head.line, ch: head.ch - len } };
     });
     const [newBody, rangesToSelect] = replacePlaceholder(body);
 
+    // selections after expanding snippets
     const newSelections = selections
       .map(sel => {
         return rangesToSelect.map(range => {
@@ -192,18 +197,20 @@ const expandSnippet = cm => {
     cm.setSelections(rangesToReplace);
     cm.replaceSelections(Array(selections.length).fill(newBody));
     cm.setSelections(newSelections);
+
+    // if arguments were given, replace the current selections with the arguments
     if (args.length) {
       const replacement = args.map(arg => `'${arg}'`).join(', ');
       cm.replaceSelections(Array(selections.length).fill(replacement));
     }
-    return true;
+    return true; // found matched prefix
   } else {
-    return false;
+    return false; // didn't found matched prefix
   }
 };
 
 export default cm => {
-  // Enable snippets
+  // set tab to expand snippets
   const defaultTabFunc = cm.options.extraKeys['Tab'];
   const expandSnippetOrIndent = cm => !expandSnippet(cm) && defaultTabFunc(cm);
   cm.options.extraKeys['Tab'] = expandSnippetOrIndent;
