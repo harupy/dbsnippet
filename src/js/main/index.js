@@ -1,12 +1,21 @@
-import enableSnippets from './snippets';
+import enableSnippets from './enableSnippets';
+import defaultSnippets from './defaultSnippets';
 
 (() => {
   const updateCell = () => {
-    const cellEditing = document.querySelector('div.is-editing div.CodeMirror');
+    const activeCell = document.querySelector('div.is-editing div.CodeMirror');
 
-    if (cellEditing) {
-      const cm = cellEditing.CodeMirror;
-      enableSnippets(cm);
+    if (activeCell && activeCell.CodeMirror) {
+      // override default sippets with the user snippets
+      const userSnippets = JSON.parse(document.querySelector('textarea#user-snippets').textContent);
+      const snippets = { ...defaultSnippets, ...userSnippets };
+      const cm = activeCell.CodeMirror;
+
+      if (!cm.snippets) {
+        enableSnippets(cm);
+      }
+
+      cm.snippets = snippets;
     }
   };
 
