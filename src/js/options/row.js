@@ -36,7 +36,7 @@ const colorText = body => {
 const Row = ({ prefix, body, index, removeSnippet, updateSnippet }) => {
   return (
     <tr style={{ fontFamily: 'monospace' }}>
-      <td>
+      <td style={{ textAlign: 'center' }}>
         <span>{index}</span>
       </td>
       <td>

@@ -41,7 +41,7 @@ const Table = () => {
             <table className="ui celled table">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th style={{ textAlign: 'center' }}>ID</th>
                   <th>Prefix</th>
                   <th>{'Body ( ${...} : placholder)'}</th>
                   <th>
