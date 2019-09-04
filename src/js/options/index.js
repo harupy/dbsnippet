@@ -7,7 +7,7 @@ const App = () => {
   return (
     <SnippetProvider>
       <div className="ui container">
-        <h1 className="ui header" style={{ marginTop: 10 }}>
+        <h1 className="ui header" style={{ marginTop: 30 }}>
           DBSnippet : User Custom Snippets
         </h1>
         <Table />
