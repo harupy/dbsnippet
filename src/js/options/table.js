@@ -49,7 +49,7 @@ const Table = () => {
                     <span style={{ backgroundColor: 'lightblue', fontFamily: 'monospace' }}>
                       &nbsp;&nbsp;&nbsp;
                     </span>
-                    &nbsp;: selection after expansion)
+                    &nbsp;: selection after expanded)
                   </th>
                   <th>Delete</th>
                 </tr>
