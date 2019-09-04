@@ -61,7 +61,8 @@ const Table = () => {
               className="ui button"
               onClick={() => context.addSnippet({ prefix: '', body: '' })}
             >
-              Add a New Snippet
+              <i className="plus square icon"></i>
+              Add
             </button>
             <button
               className={`ui button ${context.updated ? 'positive' : ''}`}
@@ -71,7 +72,8 @@ const Table = () => {
                 setMessage('Successfully saved!');
               }}
             >
-              Save Snippets
+              <i className="save icon"></i>
+              Save
             </button>
             <a
               className="ui button"
@@ -90,7 +92,8 @@ const Table = () => {
                 )
               }
             >
-              Export Snippets
+              <i className="download icon"></i>
+              Export
             </a>
             <input
               className="ui button"
@@ -101,7 +104,8 @@ const Table = () => {
               accept=".json"
             />
             <label className="ui button" htmlFor="importButton">
-              Import Snippets
+              <i className="upload icon"></i>
+              Import
             </label>
 
             <h3 className="ui green header" style={{ marginTop: 15 }}>
