@@ -120,6 +120,12 @@ export default {
   udfdbl: '@F.udf(T.DoubleType())',
   udfarr: '@F.udf(T.ArrayType(${dataType}))',
 
+  // libraries for data analysis
+  np: 'import numpy as np',
+  pd: 'import pandas as pd',
+  plt: 'import matplotlib.pyplot as plt',
+  sns: 'import seaborn as sns',
+
   // others
   scs: 'sqlContext.sql()',
   ftw: 'from pyspark.sql import functions as F, types as T, window as W',
