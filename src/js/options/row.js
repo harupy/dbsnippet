@@ -15,16 +15,19 @@ const replacePlaceholder = (body, ranges = []) => {
 };
 
 const colorText = body => {
-  const [newBody, ranges] = replacePlaceholder(body);
+  // "print(${foo})" is converted to:
+  // hints: ["foo"]
+  // other: ["print(", ")"]
 
+  const [newBody, ranges] = replacePlaceholder(body);
   const hints = ranges.map(({ start, end }) => newBody.slice(start, end));
   const others = ranges.concat({ start: newBody.length }).map((range, idx, arr) => {
     return newBody.slice(idx > 0 ? arr[idx - 1].end : 0, range.start);
   });
   const style = { backgroundColor: 'lightblue' };
-  return others.map((o, idx) => (
+  return others.map((other, idx) => (
     <span key={idx}>
-      {o}
+      {other}
       <span style={style}>{hints[idx]}</span>
     </span>
   ));
