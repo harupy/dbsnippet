@@ -99,7 +99,7 @@ export default {
   agsuma: "agg(F.sum('${col}').alias('${col}_sum'))",
   agsumda: "agg(F.sumDistinct('${col}').alias('${col}_sumd'))",
   agmna: "agg(F.mean('${col}').alias('${col}_mean'))",
-  agavga: "agg(F.ave('${col}').alias('${col}_avg'))",
+  agavga: "agg(F.avg('${col}').alias('${col}_avg'))",
   agmina: "agg(F.min('${col}').alias('${col}_min'))",
   agmaxa: "agg(F.max('${col}').alias('${col}_max'))",
 
