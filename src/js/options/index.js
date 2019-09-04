@@ -8,7 +8,7 @@ const App = () => {
     <SnippetProvider>
       <div className="ui container">
         <h1 className="ui header" style={{ marginTop: 30 }}>
-          DBSnippet : User Custom Snippets
+          DBSnippet : User Snippets
         </h1>
         <Table />
       </div>
