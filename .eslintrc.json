@@ -18,7 +18,9 @@
   "rules": {
     "arrow-parens": "off",
     "no-console": ["error", { "allow": ["log", "warn", "error"] }],
+    "no-template-curly-in-string": 0,
     "react/prop-types": 0,
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "react/self-closing-comp": 0
   }
 }

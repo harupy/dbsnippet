@@ -18,8 +18,8 @@
 
     // "changes" looks like {"a": {"newValue": "b"}}
     const newSnippets = Object.entries(changes).reduce(
-      (prev, [k, v]) => ({ ...prev, [k]: v['newValue'] }),
-      {},
+      (prev, [k, v]) => ({ ...prev, [k]: v.newValue }),
+      {}
     );
     insertSnippets(newSnippets);
   };

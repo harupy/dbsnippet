@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import * as cu from './cursorUtils';
 
 const replacePlaceholder = (body, ranges = []) => {
@@ -6,13 +7,12 @@ const replacePlaceholder = (body, ranges = []) => {
   const match = body.match(pattern);
   if (!match) {
     return [body, ranges];
-  } else {
-    const [placeholder, defaultStr] = match;
-    const head = cu.makeCursor(match.index, 0);
-    const anchor = cu.withOffset(head, defaultStr.length);
-    const newBody = body.replace(placeholder, defaultStr);
-    return replacePlaceholder(newBody, [...ranges, { head, anchor }]);
   }
+  const [placeholder, defaultStr] = match;
+  const head = cu.makeCursor(match.index, 0);
+  const anchor = cu.withOffset(head, defaultStr.length);
+  const newBody = body.replace(placeholder, defaultStr);
+  return replacePlaceholder(newBody, [...ranges, { head, anchor }]);
 };
 
 const escapeRegExp = string => {
@@ -69,13 +69,12 @@ const expandSnippet = cm => {
       cm.replaceSelections(Array(selections.length).fill(replacement));
     }
     return true; // snippet found
-  } else {
-    return false; // snippet not found
   }
+  return false;
 };
 
 export default cm => {
   // if snippet not found, execute the default Tab function
-  const defaultTabFunc = cm.options.extraKeys['Tab'];
-  cm.options.extraKeys['Tab'] = cm => !expandSnippet(cm) && defaultTabFunc(cm);
+  const defaultTabFunc = cm.options.extraKeys.Tab;
+  cm.options.extraKeys.Tab = cm_ => !expandSnippet(cm_) && defaultTabFunc(cm_);
 };

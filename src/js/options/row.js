@@ -5,13 +5,12 @@ const replacePlaceholder = (body, ranges = []) => {
   const match = body.match(pattern);
   if (!match) {
     return [body, ranges];
-  } else {
-    const [placeholder, hint] = match;
-    const start = match.index;
-    const end = start + hint.length;
-    const newBody = body.replace(placeholder, hint);
-    return replacePlaceholder(newBody, [...ranges, { start, end }]);
   }
+  const [placeholder, hint] = match;
+  const start = match.index;
+  const end = start + hint.length;
+  const newBody = body.replace(placeholder, hint);
+  return replacePlaceholder(newBody, [...ranges, { start, end }]);
 };
 
 const colorText = body => {
@@ -26,7 +25,7 @@ const colorText = body => {
   });
   const style = { backgroundColor: 'lightblue' };
   return others.map((other, idx) => (
-    <span key={idx}>
+    <span key={other}>
       {other}
       <span style={style}>{hints[idx]}</span>
     </span>
@@ -34,6 +33,8 @@ const colorText = body => {
 };
 
 const Row = ({ prefix, body, index, removeSnippet, updateSnippet }) => {
+  const updateValue = e => updateSnippet(e, index);
+
   return (
     <tr style={{ fontFamily: 'monospace' }}>
       <td style={{ textAlign: 'center' }}>
@@ -44,7 +45,7 @@ const Row = ({ prefix, body, index, removeSnippet, updateSnippet }) => {
           <input
             name="prefix"
             value={prefix}
-            onChange={e => updateSnippet(e, index)}
+            onChange={updateValue}
             style={{ fontFamily: 'monospace' }}
           />
         </div>
@@ -54,7 +55,7 @@ const Row = ({ prefix, body, index, removeSnippet, updateSnippet }) => {
           <input
             name="body"
             value={body}
-            onChange={e => updateSnippet(e, index)}
+            onChange={updateValue}
             style={{ fontFamily: 'monospace' }}
           />
         </div>
@@ -63,13 +64,14 @@ const Row = ({ prefix, body, index, removeSnippet, updateSnippet }) => {
         <div>{colorText(body)}</div>
       </td>
       <td style={{ textAlign: 'middle' }}>
-        <div
+        <button
+          type="button"
           className="ui icon basic button"
           style={{ width: '100%' }}
           onClick={() => removeSnippet(index)}
         >
           <i className="trash alternate large icon" style={{ color: '#db2828' }}></i>
-        </div>
+        </button>
       </td>
     </tr>
   );

@@ -10,7 +10,7 @@ const Table = () => {
         const saveSnippets = () => {
           chrome.storage.sync.clear();
           chrome.storage.sync.set(
-            context.snippets.reduce((acc, { prefix, body }) => ({ ...acc, [prefix]: body }), {}),
+            context.snippets.reduce((acc, { prefix, body }) => ({ ...acc, [prefix]: body }), {})
           );
         };
 
@@ -19,7 +19,7 @@ const Table = () => {
           reader.onload = event => {
             const snippets = JSON.parse(event.target.result);
             context.setSnippets(
-              Object.entries(snippets).map(([prefix, body]) => ({ prefix, body })),
+              Object.entries(snippets).map(([prefix, body]) => ({ prefix, body }))
             );
           };
           reader.readAsText(file);
@@ -30,11 +30,20 @@ const Table = () => {
             prefix={prefix}
             body={body}
             index={index}
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
             removeSnippet={context.removeSnippet}
             updateSnippet={context.updateSnippet}
           />
         ));
+
+        const encodeSnippets = () => {
+          return encodeURIComponent(
+            JSON.stringify(
+              context.snippets.reduce((prev, { prefix, body }) => ({ ...prev, [prefix]: body }), {})
+            )
+          );
+        };
 
         return (
           <div>
@@ -58,6 +67,7 @@ const Table = () => {
             </table>
 
             <button
+              type="button"
               className="ui button"
               onClick={() => context.addSnippet({ prefix: '', body: '' })}
             >
@@ -65,6 +75,7 @@ const Table = () => {
               Add
             </button>
             <button
+              type="button"
               className={`ui button ${context.updated ? 'positive' : ''}`}
               onClick={() => {
                 saveSnippets();
@@ -80,32 +91,23 @@ const Table = () => {
               target="_blank"
               rel="noopener noreferrer"
               download="snippets.json"
-              href={
-                'data:application/json;charset=utf-8;,' +
-                encodeURIComponent(
-                  JSON.stringify(
-                    context.snippets.reduce(
-                      (prev, { prefix, body }) => ({ ...prev, [prefix]: body }),
-                      {},
-                    ),
-                  ),
-                )
-              }
+              href={`data:application/json;charset=utf-8;,${encodeSnippets()}`}
             >
               <i className="download icon"></i>
               Export
             </a>
-            <input
-              className="ui button"
-              id="importButton"
-              style={{ display: 'None' }}
-              type="file"
-              onChange={e => handleFile(e.target.files[0])}
-              accept=".json"
-            />
+
             <label className="ui button" htmlFor="importButton">
               <i className="upload icon"></i>
               Import
+              <input
+                className="ui button"
+                id="importButton"
+                style={{ display: 'None' }}
+                type="file"
+                onChange={e => handleFile(e.target.files[0])}
+                accept=".json"
+              />
             </label>
 
             <h3 className="ui green header" style={{ marginTop: 15 }}>

@@ -3,10 +3,13 @@ import React from 'react';
 const SnippetContext = React.createContext([]);
 
 export class SnippetProvider extends React.Component {
-  state = {
-    snippets: [],
-    updated: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      snippets: [],
+      updated: false,
+    };
+  }
 
   componentDidMount = () => {
     chrome.storage.sync.get(items => {
@@ -14,36 +17,50 @@ export class SnippetProvider extends React.Component {
         prefix,
         body,
       }));
-      this.setState({ snippets });
+      this.setState(() => ({ snippets }));
     });
   };
 
-  setSnippets = snippets => this.setState({ snippets, updated: true });
+  setSnippets = snippets => this.setState(() => ({ snippets, updated: true }));
 
-  setUpdated = bool => this.setState({ updated: bool });
+  setUpdated = bool =>
+    this.setState(() => ({
+      updated: bool,
+    }));
 
   addSnippet = snippet => {
-    this.setState({ snippets: [...this.state.snippets, snippet], updated: true });
+    this.setState(({ snippets }) => ({
+      snippets: [...snippets, snippet],
+      updated: true,
+    }));
   };
 
   removeSnippet = index => {
-    const snippets = [...this.state.snippets];
-    snippets.splice(index, 1);
-    this.setState({ snippets, updated: true });
+    this.setState(prevState => {
+      return {
+        snippets: prevState.snippets.splice(index, 1),
+        updated: true,
+      };
+    });
   };
 
   updateSnippet = (event, index) => {
-    const snippets = [...this.state.snippets];
-    snippets[index][event.target.name] = event.target.value;
-    this.setState({ snippets, updated: true });
+    event.persist();
+    this.setState(prevState => {
+      const newSnippets = [...prevState.snippets];
+      newSnippets[index][event.target.name] = event.target.value;
+      return { snippets: newSnippets, updated: true };
+    });
   };
 
   render() {
+    const { snippets, updated } = this.state;
+    const { children } = this.props;
     return (
       <SnippetContext.Provider
         value={{
-          snippets: this.state.snippets,
-          updated: this.state.updated,
+          snippets,
+          updated,
           setSnippets: this.setSnippets,
           setUpdated: this.setUpdated,
           addSnippet: this.addSnippet,
@@ -51,7 +68,7 @@ export class SnippetProvider extends React.Component {
           updateSnippet: this.updateSnippet,
         }}
       >
-        {this.props.children}
+        {children}
       </SnippetContext.Provider>
     );
   }
