@@ -36,9 +36,11 @@ export class SnippetProvider extends React.Component {
   };
 
   removeSnippet = index => {
-    this.setState(prevState => {
+    this.setState(({ snippets }) => {
+      const newSnippets = [...snippets];
+      newSnippets.splice(index, 1);
       return {
-        snippets: prevState.snippets.splice(index, 1),
+        snippets: newSnippets,
         updated: true,
       };
     });
@@ -46,8 +48,8 @@ export class SnippetProvider extends React.Component {
 
   updateSnippet = (event, index) => {
     event.persist();
-    this.setState(prevState => {
-      const newSnippets = [...prevState.snippets];
+    this.setState(({ snippets }) => {
+      const newSnippets = [...snippets];
       newSnippets[index][event.target.name] = event.target.value;
       return { snippets: newSnippets, updated: true };
     });
