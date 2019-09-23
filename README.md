@@ -1,12 +1,12 @@
 # DBSnippet
 
-A Chrome extension to provide snippets on Databricks. I hope this extension helps Databricks users all over the world.
+A Chrome extension to provide snippets on Databricks.
 
 <img width="70%" src="https://user-images.githubusercontent.com/17039389/63638189-e2f0dd00-c6bf-11e9-92a0-a27c6bcb346d.gif">
 
 ## Installation
 
-[DBSnippet - Chrome Web Store]()
+[DBSnippet - Chrome Web Store](https://chrome.google.com/webstore/detail/dbsnippet/lnnfckpmnjkjakgjiinhlnlkmeoodlhb?hl=en&authuser=0)
 
 ## Getting Started
 
@@ -15,10 +15,6 @@ A Chrome extension to provide snippets on Databricks. I hope this extension help
 1. Select a cell.
 1. Type `dp` and press `Tab` (`dp` will be expanded to `display()`).
 1. Type `df.gb` and press `Tab` (`gb` will be expanded to `groupBy()`).
-
-## Installation
-
-[DBSnippet](https://chrome.google.com/webstore/detail/dbsnippet/lnnfckpmnjkjakgjiinhlnlkmeoodlhb?hl=en&authuser=0)
 
 ## Build from the Source
 
@@ -42,7 +38,7 @@ You can add your own snippets on the option page (which is implemented using Rea
 2. Update the snippets.
 3. Click the save button.
 
-![custom snippet](./src/img/custom_snippet.png)
+![custom snippet](./img/custom_snippet.png)
 
 ## How this extension works?
 
@@ -50,9 +46,9 @@ Each cell on the notebook has an object called `CodeMirror` which manages the ce
 
 ## Other Extensions
 
-| Extension Name                             | Purpose                                   |
+| Extension                                  | Feature                                   |
 | :----------------------------------------- | :---------------------------------------- |
-| [DBVim](https://github.com/harupy/vim)     | Enable Vim on Databricks                  |
+| [DBVim](https://github.com/harupy/dbvim)   | Enable Vim on Databricks                  |
 | [DBDark](https://github.com/harupy/dbdark) | Apply dark theme on Databricks            |
 | [DBToc](https://github.com/harupy/dbtoc)   | Create a table of contents with one click |
 

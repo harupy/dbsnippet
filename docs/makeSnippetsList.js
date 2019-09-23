@@ -1,10 +1,10 @@
 const fs = require('fs');
 
-const fileContent = fs.readFileSync('src/js/snippets.js', { encoding: 'utf8' });
+const fileContent = fs.readFileSync('src/js/main/defaultSnippets.js', {encoding: 'utf8'});
 
-const getSnippetsString = fileContent => {
-  const pattern = /const snippets = \{([\s\S]+?)\};/;
-  return fileContent.match(pattern)[1];
+const parseSnippets = fc => {
+  const pattern = /\{([\s\S]+?)\};/;
+  return fc.match(pattern)[1];
 };
 
 const removePlaceholders = body => {
@@ -28,11 +28,9 @@ const extractSnippets = snippetsString => {
   });
 };
 
-const snippetsString = getSnippetsString(fileContent);
-const snippets = extractSnippets(snippetsString);
-
-const markdownTable =
-  '|Snippet|Body|\n|:-|:-|\n' + snippets.map(s => `|${s.join('|')}|`).join('\n');
+const snippets = extractSnippets(parseSnippets(fileContent));
+const rows = snippets.map(s => `|${s.join('|')}|`).join('\n');
+const markdownTable = `|Snippet|Body|\n|:-|:-|\n${rows}`;
 
 fs.writeFile('docs/snippets.md', markdownTable, err => {
   if (err) console.error(err);

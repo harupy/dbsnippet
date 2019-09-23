@@ -44,8 +44,8 @@
 | sumd    | F.sumDistinct()                                                 |
 | min     | F.min()                                                         |
 | max     | F.max()                                                         |
-| mn      | F.mean()                                                        |
-| avg     | F.ave()                                                         |
+| mean    | F.mean()                                                        |
+| avg     | F.avg()                                                         |
 | len     | F.length()                                                      |
 | rnd     | F.round()                                                       |
 | uxt     | F.unix_timestamp()                                              |
@@ -79,7 +79,7 @@
 | agcntd  | agg(F.countDistinct())                                          |
 | agsum   | agg(F.sum())                                                    |
 | agsumd  | agg(F.sumDistinct())                                            |
-| agmn    | agg(F.mean())                                                   |
+| agmean  | agg(F.mean())                                                   |
 | agavg   | agg(F.avg())                                                    |
 | agmin   | agg(F.min())                                                    |
 | agmax   | agg(F.max())                                                    |
@@ -88,7 +88,7 @@
 | agsuma  | agg(F.sum().alias())                                            |
 | agsumda | agg(F.sumDistinct().alias())                                    |
 | agmna   | agg(F.mean().alias())                                           |
-| agavga  | agg(F.ave().alias())                                            |
+| agavga  | agg(F.avg().alias())                                            |
 | agmina  | agg(F.min().alias())                                            |
 | agmaxa  | agg(F.max().alias())                                            |
 | dwg     | dbutils.widgets.get()                                           |
@@ -104,6 +104,10 @@
 | udfflt  | @F.udf(T.FloatType())                                           |
 | udfdbl  | @F.udf(T.DoubleType())                                          |
 | udfarr  | @F.udf(T.ArrayType())                                           |
+| np      | import numpy as np                                              |
+| pd      | import pandas as pd                                             |
+| plt     | import matplotlib.pyplot as plt                                 |
+| sns     | import seaborn as sns                                           |
 | scs     | sqlContext.sql()                                                |
 | ftw     | from pyspark.sql import functions as F, types as T, window as W |
 | shcnt   | select(F.count()).show()                                        |

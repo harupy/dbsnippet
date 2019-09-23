@@ -3,4 +3,3 @@ node_modules/
 src/dist/*.js
 *.gif
 src.zip
-zip_src.sh
