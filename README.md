@@ -1,6 +1,6 @@
 # DBSnippet
 
-A Chrome extension to provide snippets on Databricks.
+A Chrome extension to provide code snippets on Databricks.
 
 <img width="70%" src="https://user-images.githubusercontent.com/17039389/63638189-e2f0dd00-c6bf-11e9-92a0-a27c6bcb346d.gif">
 
@@ -30,9 +30,9 @@ A Chrome extension to provide snippets on Databricks.
 
 [Snippet List](./docs/snippets.md)
 
-## Customize Snippets
+## Custom Snippets
 
-You can add your own snippets on the option page (which is implemented using React).
+You can add your own snippets on the option page (implemented using React and Semantic-UI).
 
 1. Click the extension logo and select `options`.
 2. Update the snippets.
