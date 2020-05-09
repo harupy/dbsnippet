@@ -8,13 +8,16 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*.databricks.com/*", "https://*.azuredatabricks.net/*"],
-      "js": ["dist/contentScript.js"],
+      "matches": [
+        "https://*.databricks.com/*",
+        "https://*.azuredatabricks.net/*"
+      ],
+      "js": ["contentScript.js"],
       "run_at": "document_idle"
     }
   ],
-  "options_page": "dist/options.html",
+  "options_page": "options/index.html",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "web_accessible_resources": ["dist/main.js", "dist/options.js"],
+  "web_accessible_resources": ["main.js", "options/index.js"],
   "permissions": ["storage"]
 }
