@@ -39,7 +39,7 @@ const SaveButton: React.FC<{}> = () => {
   return (
     <Button component="label">
       <VerticalAlignTopIcon className={classes.icon} />
-      Import
+      IMPORT
       <input
         id="importButton"
         style={{ display: 'None' }}

@@ -16,7 +16,7 @@ const AddButton: React.FC<{}> = () => {
       }
     >
       <AddIcon className={classes.icon} />
-      Add
+      ADD
     </Button>
   );
 };

@@ -28,7 +28,7 @@ const SaveButton: React.FC<{}> = () => {
       href={`data:application/json;charset=utf-8;,${encodeSnippets()}`}
     >
       <VerticalAlignBottomIcon className={classes.icon} />
-      Export
+      EXPORT
     </Button>
   );
 };

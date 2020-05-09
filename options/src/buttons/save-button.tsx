@@ -17,7 +17,7 @@ const SaveButton: React.FC<{}> = () => {
       color={updated ? 'secondary' : 'default'}
     >
       <SaveIcon className={classes.icon} />
-      Save
+      SAVE
     </Button>
   );
 };
