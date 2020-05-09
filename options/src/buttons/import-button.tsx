@@ -1,4 +1,7 @@
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
+import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop';
+
 import SnippetContext from '../contexts/snippets-context';
 
 const SaveButton: React.FC<{}> = () => {
@@ -31,18 +34,17 @@ const SaveButton: React.FC<{}> = () => {
   };
 
   return (
-    <label className="ui button" htmlFor="importButton">
-      <i className="upload icon" />
+    <Button component="label">
+      <VerticalAlignTopIcon style={{ marginRight: 3 }} />
       Import
       <input
-        className="ui button"
         id="importButton"
         style={{ display: 'None' }}
         type="file"
         onChange={(e): void => handleFile(e.target.files?.[0])}
         accept=".json"
       />
-    </label>
+    </Button>
   );
 };
 

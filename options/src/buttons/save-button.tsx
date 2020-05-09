@@ -1,20 +1,22 @@
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
+
 import SnippetContext from '../contexts/snippets-context';
 
 const SaveButton: React.FC<{}> = () => {
   const { updated, saveSnippets } = React.useContext(SnippetContext);
 
   return (
-    <button
-      type="button"
-      className={`ui button ${updated ? 'positive' : ''}`}
+    <Button
       onClick={(): void => {
         saveSnippets?.();
       }}
+      color={updated ? 'secondary' : 'default'}
     >
-      <i className="save icon" />
+      <SaveIcon style={{ marginRight: 3 }} />
       Save
-    </button>
+    </Button>
   );
 };
 

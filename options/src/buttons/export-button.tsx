@@ -1,4 +1,7 @@
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
+import VerticalAlignBottomIcon from '@material-ui/icons/VerticalAlignBottom';
+
 import SnippetContext from '../contexts/snippets-context';
 
 const SaveButton: React.FC<{}> = () => {
@@ -16,16 +19,15 @@ const SaveButton: React.FC<{}> = () => {
   };
 
   return (
-    <a
-      className="ui button"
+    <Button
       target="_blank"
       rel="noopener noreferrer"
       download="snippets.json"
       href={`data:application/json;charset=utf-8;,${encodeSnippets()}`}
     >
-      <i className="download icon" />
+      <VerticalAlignBottomIcon style={{ marginRight: 3 }} />
       Export
-    </a>
+    </Button>
   );
 };
 
