@@ -22,32 +22,30 @@ const Row: React.FC<RowProps> = ({ prefix, body, index }) => {
       <td style={{ textAlign: 'center' }}>
         <span>{index}</span>
       </td>
-      <td>
-        <div className="ui input" style={{ width: '100%' }}>
-          <input
-            name="prefix"
-            value={prefix}
-            onChange={handleInputChange}
-            style={{ fontFamily: 'monospace' }}
-          />
-        </div>
-      </td>
-      <td>
-        <div className="ui input" style={{ width: '100%' }}>
-          <input
-            name="body"
-            value={body}
-            onChange={handleInputChange}
-            style={{ fontFamily: 'monospace' }}
-          />
-        </div>
-      </td>
+
+      {/* Input boxes */}
+      {Object.entries({ prefix, body }).map(([key, value]) => (
+        <td>
+          <div className="ui input" style={{ width: '100%' }}>
+            <input
+              name={key}
+              value={value}
+              onChange={handleInputChange}
+              style={{ fontFamily: 'monospace' }}
+            />
+          </div>
+        </td>
+      ))}
+
+      {/* Result after expanding snippet */}
       <td>
         <HighlightPlaceholders
           body={body}
           style={{ backgroundColor: 'lightblue' }}
         />
       </td>
+
+      {/* Delete button */}
       <td style={{ textAlign: 'center' }}>
         <button
           type="button"
