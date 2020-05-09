@@ -3,9 +3,11 @@ import Button from '@material-ui/core/Button';
 import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop';
 
 import SnippetContext from '../contexts/snippets-context';
+import useStyles from './button-styles';
 
 const SaveButton: React.FC<{}> = () => {
   const { setSnippets } = React.useContext(SnippetContext);
+  const classes = useStyles();
 
   const handleFile = (file: File | undefined): void => {
     const reader = new FileReader();
@@ -22,6 +24,7 @@ const SaveButton: React.FC<{}> = () => {
         Object.entries(parsed).map(([prefix, body]) => ({
           prefix,
           body,
+          selected: false,
         })),
       );
     };
@@ -35,7 +38,7 @@ const SaveButton: React.FC<{}> = () => {
 
   return (
     <Button component="label">
-      <VerticalAlignTopIcon style={{ marginRight: 3 }} />
+      <VerticalAlignTopIcon className={classes.icon} />
       Import
       <input
         id="importButton"

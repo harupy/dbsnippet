@@ -1,16 +1,17 @@
 import * as React from 'react';
+import Container from '@material-ui/core/Container';
+
 import { SnippetsProvider } from './contexts/snippets-context';
-import Table from './table';
+import NavBar from './nav-bar';
+import SnippetsTable from './snippets-table';
 
 const App: React.FC<{}> = () => {
   return (
     <SnippetsProvider>
-      <div className="ui container">
-        <h1 className="ui header" style={{ marginTop: 30 }}>
-          DBSnippet : User Snippets
-        </h1>
-        <Table />
-      </div>
+      <Container>
+        <NavBar />
+        <SnippetsTable />
+      </Container>
     </SnippetsProvider>
   );
 };

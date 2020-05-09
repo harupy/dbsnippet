@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { splitByPlaceholders } from './utils';
 
-type Style = { [key: string]: string | number | undefined };
-
-const highlightPlaceholders: React.SFC<{
+const highlightPlaceholders: React.FC<{
   body: string;
-  style: Style;
-}> = ({ body, style }) => {
+  backgroundColor: string;
+}> = ({ body, backgroundColor }) => {
   const [placeholders, pieces] = splitByPlaceholders(body);
 
   return (
@@ -14,7 +12,7 @@ const highlightPlaceholders: React.SFC<{
       {pieces.map((piece, idx) => (
         <span key={piece}>
           {piece}
-          <span style={style}>{placeholders[idx]}</span>
+          <span style={{ backgroundColor }}>{placeholders[idx]}</span>
         </span>
       ))}
     </div>

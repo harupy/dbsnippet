@@ -1,13 +1,19 @@
 import * as React from 'react';
 
 export type Snippet = {
-  [key: string]: string;
+  prefix: string;
+  body: string;
+  selected: boolean;
 };
 
 type SnippetsContextProps = {
   snippets: Snippet[];
   setSnippets: (snippets: Snippet[]) => void;
   addSnippet: (snippet: Snippet) => void;
+  selectSnippet: (selected: boolean, index: number) => void;
+  selectAll: () => void;
+  deselectAll: () => void;
+  deleteSelected: () => void;
   deleteSnippet: (index: number) => void;
   updateSnippet: (
     // event: React.ChangeEvent<HTMLInputElement>,
@@ -42,6 +48,7 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
       const snippets = Object.entries(items).map(([prefix, body]) => ({
         prefix,
         body,
+        selected: false,
       }));
       setSnippets(snippets);
     });
@@ -72,7 +79,11 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
     setUpdated(true);
   };
 
-  const updateSnippet = (key: string, value: string, index: number): void => {
+  const updateSnippet = (
+    key: 'prefix' | 'body',
+    value: string,
+    index: number,
+  ): void => {
     // event.persist();
     // const { name, value } = event.target;
     setSnippets(oldSnippets => {
@@ -83,12 +94,59 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
     setUpdated(true);
   };
 
+  const selectAll = (): void => {
+    // event.persist();
+    // const { name, value } = event.target;
+    setSnippets(oldSnippets => {
+      return oldSnippets.map(({ prefix, body }) => ({
+        prefix,
+        body,
+        selected: true,
+      }));
+    });
+  };
+
+  const deselectAll = (): void => {
+    // event.persist();
+    // const { name, value } = event.target;
+    setSnippets(oldSnippets => {
+      return oldSnippets.map(({ prefix, body }) => ({
+        prefix,
+        body,
+        selected: false,
+      }));
+    });
+  };
+
+  const deleteSelected = (): void => {
+    // event.persist();
+    // const { name, value } = event.target;
+    setSnippets(oldSnippets => {
+      return oldSnippets.filter(({ selected }) => !selected);
+    });
+    setUpdated(true);
+  };
+
+  const selectSnippet = (selected: boolean, index: number): void => {
+    // event.persist();
+    // const { name, value } = event.target;
+    setSnippets(oldSnippets => {
+      const newSnippets = [...oldSnippets];
+      newSnippets[index]['selected'] = selected;
+      return newSnippets;
+    });
+  };
+
   return (
     <SnippetsContext.Provider
       value={{
         snippets,
         setSnippets,
         addSnippet,
+        selectSnippet,
+        selectAll,
+        deselectAll,
+        deleteSelected,
         deleteSnippet,
         updateSnippet,
         saveSnippets,

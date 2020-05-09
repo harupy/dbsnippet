@@ -3,9 +3,11 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 
 import SnippetContext from '../contexts/snippets-context';
+import useStyles from './button-styles';
 
 const SaveButton: React.FC<{}> = () => {
   const { updated, saveSnippets } = React.useContext(SnippetContext);
+  const classes = useStyles();
 
   return (
     <Button
@@ -14,7 +16,7 @@ const SaveButton: React.FC<{}> = () => {
       }}
       color={updated ? 'secondary' : 'default'}
     >
-      <SaveIcon style={{ marginRight: 3 }} />
+      <SaveIcon className={classes.icon} />
       Save
     </Button>
   );
