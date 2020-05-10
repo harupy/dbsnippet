@@ -4,13 +4,13 @@ A Chrome extension to provide code snippets on Databricks.
 
 <img width="80%" src="https://user-images.githubusercontent.com/17039389/65810979-c4b15c00-e1ec-11e9-8f6a-45e766bcd7d3.gif">
 
-## Installation
+## Install from the Chrome Web Store
 
 [DBSnippet - Chrome Web Store](https://chrome.google.com/webstore/detail/dbsnippet/lnnfckpmnjkjakgjiinhlnlkmeoodlhb?hl=en&authuser=0)
 
 ## Getting Started
 
-1. Open a Databricks notebook.
+1. Open a notebook on Databricks.
 1. Make sure the extension is enabled.
 1. Select a cell.
 1. Type `dp` and press `Tab` (`dp` will be expanded to `display()`).
@@ -18,17 +18,21 @@ A Chrome extension to provide code snippets on Databricks.
 
 ## Build from the Source
 
-1. Clone this repository.
-1. Run `npm install`.
-1. Run `npm run build` (or `npm run dev`).
-1. Open `chrome://extensions` on Chrome.
-1. Enable `Developer mode` if it's disabled.
-1. Click `Load unpacked`.
-1. Select `src` in the extension directory.
+1. Run the following commands:
 
-## Snippet List
+```bash
+./tools/install.sh
+./tools/build.sh
+```
 
-[Snippet List](./docs/snippets.md)
+2. Open [chrome://extensions](chrome://extensions) on Chrome.
+3. Enable `Developer mode` if it's not enabled.
+4. Click `Load unpacked`.
+5. Select `dist` in the repository.
+
+## Snippets List
+
+[Snippets List](./docs/snippets.md)
 
 ## Custom Snippets
 
