@@ -34,7 +34,10 @@ const SnippetRow: React.FC<RowProps> = ({ prefix, body, selected, index }) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     e.persist();
     const { name, value } = e.target;
-    updateSnippet?.(name, value, index);
+
+    if (updateSnippet) {
+      updateSnippet(name, value, index);
+    }
   };
 
   return (

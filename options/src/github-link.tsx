@@ -23,15 +23,15 @@ const GitHubLink: React.FC<StarCounterProps> = ({ user, repo }) => {
   const classes = useStyles();
 
   // Fetch stargazers count GitHub using the GitHub REST API.
-  const fetchStarCount = async () => {
+  const fetchStarCount = async (): Promise<void> => {
     const resp = await fetch(`https://api.github.com/repos/${user}/${repo}`);
 
     if (!resp.ok) {
       throw new Error(`${resp.status} ${resp.statusText}`);
     }
 
-    const { stargazers_count } = await resp.json();
-    setStarCount(stargazers_count);
+    const { stargazers_count: stargazersCount } = await resp.json();
+    setStarCount(stargazersCount);
   };
 
   React.useEffect(() => {
@@ -49,7 +49,7 @@ const GitHubLink: React.FC<StarCounterProps> = ({ user, repo }) => {
       href={`https://github.com/${user}/${repo}`}
     >
       <GitHubIcon className={classes.icon} />
-      Star : {starCount}
+      {`Star : ${starCount}`}
     </Button>
   );
 };
