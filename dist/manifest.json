@@ -2,7 +2,7 @@
   "name": "DBSnippet",
   "version": "0.1.3",
   "manifest_version": 2,
-  "description": "A Chrome extension to provide code snippets on Databricks",
+  "description": "A Chrome extension to enable code snippets on Databricks",
   "icons": {
     "48": "img/logo.png"
   },
