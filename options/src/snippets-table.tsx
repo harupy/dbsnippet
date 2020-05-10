@@ -39,7 +39,7 @@ const SnippetsTable: React.FC<{}> = () => {
   const { snippets } = React.useContext(SnippetContext);
   const classes = useStyles();
 
-  const renderTable = (): React.ReactNode => {
+  const renderTable = () => {
     const rows = snippets?.map((snippet, index) => (
       <SnippetRow {...snippet} index={index} key={index} />
     ));
