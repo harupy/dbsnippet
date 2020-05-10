@@ -1,6 +1,6 @@
 # DBSnippet
 
-A Chrome extension to provide code snippets on Databricks.
+A Chrome extension to enable code snippets on Databricks.
 
 <img width="80%" src="https://user-images.githubusercontent.com/17039389/65810979-c4b15c00-e1ec-11e9-8f6a-45e766bcd7d3.gif">
 
