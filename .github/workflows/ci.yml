@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        workdir: [main, options]
+        work_dir: [main, options]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v1
@@ -17,8 +17,8 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
       - name: Install Dependencies
-        working-directory: ${{ matrix.workdir }}
+        working-directory: ${{ matrix.work_dir }}
         run: npm install
       - name: Run Lint
-        working-directory: ${{ matrix.workdir }}
+        working-directory: ${{ matrix.work_dir }}
         run: npm run lint
