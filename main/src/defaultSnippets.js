@@ -1,6 +1,7 @@
 export default {
-  // ${...} represents the placeholder
-  // dataframe methods
+  // ${...} represents a placeholder.
+
+  // DataFrame methods
   sel: 'select(${*cols})',
   gb: 'groupBy(${*cols})',
   ob: 'orderBy(${*cols, ascending})',
@@ -27,7 +28,7 @@ export default {
   drd: 'dropDuplicates(${subset})',
   tpd: 'toPandas()',
 
-  // column methods
+  // Column methods
   al: 'alias(${alias})',
   ca: 'cast(${dataType})',
   at: 'astype(dataType)',
@@ -39,7 +40,7 @@ export default {
   isin: 'isin(${*cols})',
   btw: 'between(${lower, upper})',
 
-  // functions
+  // pyspark.sql.functions
   col: 'F.col(${col})',
   lit: 'F.lit(${col})',
   std: 'F.stddev(${col})',
@@ -71,7 +72,7 @@ export default {
   sec: 'F.second(${col})',
   epl: 'F.explode(${col})',
 
-  // io
+  // Read & write
   srt: 'spark.read.table(${tableName})',
   src: 'spark.read.csv(${path})',
   srp: 'spark.read.parquet(${path})',
@@ -82,7 +83,7 @@ export default {
   wmep: "write.mode('error').parquet(${path})",
   wmip: "write.mode('ignore').parquet(${path})",
 
-  // aggregations
+  // Aggregation
   ag: 'agg(${*exprs})',
   agcnt: 'agg(F.count(${col}))',
   agcntd: 'agg(F.countDistinct(${col}))',
@@ -93,7 +94,7 @@ export default {
   agmin: 'agg(F.min(${col}))',
   agmax: 'agg(F.max(${col}))',
 
-  // aggregations with alias
+  // Aggregation with alias
   agcnta: "agg(F.count('${col}').alias('${col}_cnt'))",
   agcntda: "agg(F.countDistinct('${col}').alias('${col}_cntd'))",
   agsuma: "agg(F.sum('${col}').alias('${col}_sum'))",
@@ -120,7 +121,7 @@ export default {
   udfdbl: '@F.udf(T.DoubleType())',
   udfarr: '@F.udf(T.ArrayType(${dataType}))',
 
-  // libraries for data analysis
+  // Libraries
   np: 'import numpy as np',
   pd: 'import pandas as pd',
   plt: 'import matplotlib.pyplot as plt',

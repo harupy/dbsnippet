@@ -38,7 +38,6 @@ const expandSnippet = cm => {
   const args = pieces.length > 1 ? pieces.slice(1) : [];
 
   if (prefix && prefix in snippets) {
-    // TODO: add some comments here
     const body = snippets[prefix];
     const selections = cm.listSelections(); // for multiple selections
     const rangesToReplace = selections.map(({ anchor, head }) => {
@@ -47,7 +46,7 @@ const expandSnippet = cm => {
     });
     const [newBody, rangesToSelect] = replacePlaceholder(body);
 
-    // selections after expanding snippets
+    // Selections after expanding snippets
     const newSelections = selections
       .map(sel => {
         return rangesToSelect.map(range => {
@@ -63,7 +62,7 @@ const expandSnippet = cm => {
     cm.replaceSelections(Array(selections.length).fill(newBody));
     cm.setSelections(newSelections);
 
-    // if arguments were given, replace the current selections with the arguments
+    // If arguments were given, replace the current selections with them
     if (args.length) {
       const replacement = args.map(arg => `'${arg}'`).join(', ');
       cm.replaceSelections(Array(selections.length).fill(replacement));
@@ -74,7 +73,7 @@ const expandSnippet = cm => {
 };
 
 export default cm => {
-  // if snippet not found, execute the default Tab function
+  // If a matched snippet is not found, execute the default Tab function
   const defaultTabFunc = cm.options.extraKeys.Tab;
   cm.options.extraKeys.Tab = cm_ => !expandSnippet(cm_) && defaultTabFunc(cm_);
 };

@@ -1,33 +1,35 @@
+import { TEXTAREA_ID } from './constans';
+
 (() => {
-  // get snippets from storage and inject it using textarea
-  const insertSnippets = snippets => {
+  // Get custom snippets from chrome storage and inject it as a textarea content
+  const injectSnippets = snippets => {
     // insert the user snippets as a textarea
-    const ta = document.createElement('textarea');
-    ta.textContent = JSON.stringify(snippets);
-    ta.id = 'user-snippets';
-    ta.style = 'display: none';
-    (document.head || document.documentElement).appendChild(ta);
+    const textarea = document.createElement('textarea');
+    textarea.textContent = JSON.stringify(snippets);
+    textarea.id = TEXTAREA_ID;
+    textarea.style = 'display: none';
+    (document.head || document.documentElement).appendChild(textarea);
   };
 
   const updateSnippets = changes => {
-    // remove the old user-snippets textarea
-    const oldTa = document.querySelector('textarea#user-snippets');
-    if (oldTa) {
-      oldTa.remove();
+    // Remove the old textarea that contain the custom snippets
+    const oldTextarea = document.querySelector(`textarea#${TEXTAREA_ID}`);
+    if (oldTextarea) {
+      oldTextarea.remove();
     }
 
-    // "changes" looks like {"a": {"newValue": "b"}}
+    // `changes` looks like {a: {newValue: "b"}}
     const newSnippets = Object.entries(changes).reduce(
       (prev, [k, v]) => ({ ...prev, [k]: v.newValue }),
       {},
     );
-    insertSnippets(newSnippets);
+    injectSnippets(newSnippets);
   };
 
-  chrome.storage.sync.get(null, insertSnippets);
+  chrome.storage.sync.get(null, injectSnippets);
   chrome.storage.onChanged.addListener(updateSnippets);
 
-  // it seems that CodeMirror object can be accessed with injected scripts.
+  // Inject `main.js` to enable snippets.
   const main = document.createElement('script');
   main.src = chrome.extension.getURL('./main.js');
   (document.head || document.documentElement).appendChild(main);
