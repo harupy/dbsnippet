@@ -32,29 +32,17 @@ A Chrome extension to provide code snippets on Databricks.
 
 ## Custom Snippets
 
-You can add your own snippets on the option page (implemented using React and Semantic-UI).
+You can add custom snippets on the option page.
 
 1. Click the extension logo and select `options`.
-2. Update the snippets.
+2. Add snippets.
 3. Click the save button.
 
-![custom snippet](./img/custom_snippet.png)
+![custom snippet](https://user-images.githubusercontent.com/17039389/81496312-b6cec800-92f1-11ea-90e8-39f058e7aabc.png)
 
 ## How this extension works?
 
 Each cell on the notebook has an object called `CodeMirror` which manages the cell content and state. This extension injects a JS script to override the properties related to key bindings and add new features not provided by default.
-
-## Other Extensions
-
-| Extension                                  | Feature                                   |
-| :----------------------------------------- | :---------------------------------------- |
-| [DBVim](https://github.com/harupy/dbvim)   | Enable Vim on Databricks                  |
-| [DBDark](https://github.com/harupy/dbdark) | Apply dark theme on Databricks            |
-| [DBToc](https://github.com/harupy/dbtoc)   | Create a table of contents with one click |
-
-## Acknowledgements
-
-A huge thanks to Databricks for making big data simple.
 
 ## License
 
