@@ -16,9 +16,9 @@ export const getCursorLine = cm => {
 };
 
 export const getLineBeforeCursor = cm => {
-  const cursor = cm.getCursor();
-  const cursorLine = cm.getLine(cursor.line);
-  return cursorLine.slice(0, cursor.ch);
+  const { line, ch } = cm.getCursor();
+  const cursorLine = cm.getLine(line);
+  return cursorLine.slice(0, ch);
 };
 
 export const mergeCursors = (...cursors) => {

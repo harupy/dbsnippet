@@ -1,24 +1,24 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: {
-    main: "./src/index.js",
-    contentScript: "./src/contentScript.js",
+    main: './src/index.js',
+    contentScript: './src/contentScript.js',
   },
   output: {
-    path: path.join(__dirname, "../dist/"),
-    filename: "[name].js",
+    path: path.join(__dirname, '../dist/'),
+    filename: '[name].js',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        enforce: "pre",
+        enforce: 'pre',
         use: [
           {
-            loader: "eslint-loader",
+            loader: 'eslint-loader',
           },
         ],
       },
@@ -27,10 +27,10 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: [["@babel/preset-env", { modules: false }]],
-              plugins: ["@babel/plugin-proposal-class-properties"],
+              presets: [['@babel/preset-env', { modules: false }]],
+              plugins: ['@babel/plugin-proposal-class-properties'],
             },
           },
         ],
