@@ -19,7 +19,7 @@
     // "changes" looks like {"a": {"newValue": "b"}}
     const newSnippets = Object.entries(changes).reduce(
       (prev, [k, v]) => ({ ...prev, [k]: v.newValue }),
-      {}
+      {},
     );
     insertSnippets(newSnippets);
   };
@@ -29,6 +29,6 @@
 
   // it seems that CodeMirror object can be accessed with injected scripts.
   const main = document.createElement('script');
-  main.src = chrome.extension.getURL('./dist/main.js');
+  main.src = chrome.extension.getURL('./main.js');
   (document.head || document.documentElement).appendChild(main);
 })();
