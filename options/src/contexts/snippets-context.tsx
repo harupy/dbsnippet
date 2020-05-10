@@ -128,8 +128,6 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
   };
 
   const selectSnippet = (selected: boolean, index: number): void => {
-    // event.persist();
-    // const { name, value } = event.target;
     setSnippets(oldSnippets => {
       const newSnippets = [...oldSnippets];
       newSnippets[index]['selected'] = selected;
