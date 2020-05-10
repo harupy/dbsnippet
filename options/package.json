@@ -1,24 +1,6 @@
 {
   "name": "dbsnippt",
   "version": "1.0.0",
-  "description": "Code **FASTER** on Databricks",
-  "main": "index.js",
-  "scripts": {
-    "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production",
-    "lint": "eslint \"src/**\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/harupy/dbeditor.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/harupy/dbeditor/issues"
-  },
-  "homepage": "https://github.com/harupy/dbeditor#readme",
   "devDependencies": {
     "@types/chrome": "0.0.107",
     "@types/react": "^16.9.34",
