@@ -39,9 +39,15 @@ const SnippetsTable: React.FC<{}> = () => {
   const { snippets } = React.useContext(SnippetContext);
   const classes = useStyles();
 
-  const renderTable = () => {
-    const rows = snippets?.map((snippet, index) => (
-      <SnippetRow {...snippet} index={index} key={index} />
+  const renderTable = (): JSX.Element => {
+    const rows = snippets?.map(({ prefix, body, selected }, index) => (
+      <SnippetRow
+        prefix={prefix}
+        body={body}
+        selected={selected}
+        index={index}
+        key={index}
+      />
     ));
 
     return (
@@ -53,6 +59,7 @@ const SnippetsTable: React.FC<{}> = () => {
                 <SelectAll />
               </TableCell>
               <TableCell>Prefix</TableCell>
+              {/* eslint-disable-next-line no-template-curly-in-string */}
               <TableCell>{'Body ( ${...} : placholder)'}</TableCell>
               <TableCell>
                 Result (&nbsp;

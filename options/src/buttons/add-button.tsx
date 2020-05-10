@@ -11,9 +11,11 @@ const AddButton: React.FC<{}> = () => {
 
   return (
     <Button
-      onClick={(): void =>
-        addSnippet?.({ prefix: '', body: '', selected: false })
-      }
+      onClick={(): void => {
+        if (addSnippet) {
+          addSnippet({ prefix: '', body: '', selected: false });
+        }
+      }}
     >
       <AddIcon className={classes.icon} />
       ADD

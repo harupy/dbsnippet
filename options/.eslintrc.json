@@ -29,9 +29,10 @@
     "es6": true
   },
   "rules": {
-    "prettier/prettier": "error",
-    "import/extensions": ["never"],
+    "prettier/prettier": ["error"],
+    "import/extensions": ["off"],
     "react/jsx-filename-extension": ["off"],
-    "react/prop-types": ["off"]
+    "react/prop-types": ["off"],
+    "no-unused-expressions": ["error", { "allowTernary": true }]
   }
 }

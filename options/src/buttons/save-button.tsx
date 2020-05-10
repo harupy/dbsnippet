@@ -12,7 +12,9 @@ const SaveButton: React.FC<{}> = () => {
   return (
     <Button
       onClick={(): void => {
-        saveSnippets?.();
+        if (saveSnippets) {
+          saveSnippets();
+        }
       }}
       color={updated ? 'secondary' : 'default'}
     >

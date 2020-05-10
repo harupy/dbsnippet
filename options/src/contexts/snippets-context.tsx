@@ -38,19 +38,15 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
   const [snippets, setSnippets] = React.useState<Snippet[]>([]);
   const [updated, setUpdated] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    loadSnippets();
-  }, []);
-
   const loadSnippets = (): void => {
     chrome.storage.sync.get(items => {
       // Snippets are stored as an object. Convert it to a list of (key, value).
-      const snippets = Object.entries(items).map(([prefix, body]) => ({
+      const snippetsList = Object.entries(items).map(([prefix, body]) => ({
         prefix,
         body,
         selected: false,
       }));
-      setSnippets(snippets);
+      setSnippets(snippetsList);
     });
   };
 
@@ -62,7 +58,7 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
       {},
     );
     chrome.storage.sync.set(items || {});
-    setUpdated?.(false);
+    setUpdated(false);
   };
 
   const addSnippet = (snippet: Snippet): void => {
@@ -130,10 +126,14 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
   const selectSnippet = (selected: boolean, index: number): void => {
     setSnippets(oldSnippets => {
       const newSnippets = [...oldSnippets];
-      newSnippets[index]['selected'] = selected;
+      newSnippets[index].selected = selected;
       return newSnippets;
     });
   };
+
+  React.useEffect(() => {
+    loadSnippets();
+  }, []);
 
   return (
     <SnippetsContext.Provider

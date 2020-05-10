@@ -1,0 +1,24 @@
+name: CI
+
+on: pull_request
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        work_dir: [main, options]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+      - name: Install Dependencies
+        working-directory: ${{ matrix.work_dir }}
+        run: npm install
+      - name: Run Lint
+        working-directory: ${{ matrix.work_dir }}
+        run: npm run lint

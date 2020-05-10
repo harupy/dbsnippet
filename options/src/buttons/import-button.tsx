@@ -20,13 +20,16 @@ const SaveButton: React.FC<{}> = () => {
       const parsed = JSON.parse(event.target.result) as {
         [key: string]: string;
       };
-      setSnippets?.(
-        Object.entries(parsed).map(([prefix, body]) => ({
-          prefix,
-          body,
-          selected: false,
-        })),
-      );
+
+      if (setSnippets) {
+        setSnippets(
+          Object.entries(parsed).map(([prefix, body]) => ({
+            prefix,
+            body,
+            selected: false,
+          })),
+        );
+      }
     };
 
     if (file === undefined) {
