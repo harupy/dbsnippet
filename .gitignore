@@ -1,4 +1,4 @@
 .DS_Store
 node_modules/
 *.gif
-src.zip
+dist.zip
