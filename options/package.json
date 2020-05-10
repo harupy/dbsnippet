@@ -1,6 +1,11 @@
 {
   "name": "dbsnippt",
   "version": "1.0.0",
+  "scripts": {
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "lint": "eslint \"src/**\""
+  },
   "devDependencies": {
     "@types/chrome": "0.0.107",
     "@types/react": "^16.9.34",
