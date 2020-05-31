@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import { SnippetsContext } from './contexts/snippets-context';
+import { SnippetsContext } from '../contexts/snippets-context';
 
 export const SelectAll: React.FC<{}> = () => {
   const { snippets, selectAll, deselectAll } = React.useContext(

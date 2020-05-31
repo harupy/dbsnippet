@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import { SnippetsContext } from '../contexts/snippets-context';
+import { SnippetsContext } from '../../contexts/snippets-context';
 import { useButtonStyles } from './button-styles';
 
 export const DeleteButton: React.FC<{}> = () => {
