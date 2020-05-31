@@ -1,7 +1,6 @@
 import { TEXTAREA_ID } from './constants';
 
 (() => {
-  // Get custom snippets from chrome storage and inject it as a textarea content
   const injectSnippets = snippets => {
     // insert the user snippets as a textarea
     const textarea = document.createElement('textarea');
