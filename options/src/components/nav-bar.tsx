@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { GitHubLink } from './github-link';
 
-export const useStyles = makeStyles({
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
