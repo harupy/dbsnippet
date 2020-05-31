@@ -4,7 +4,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-interface StarCounterProps {
+interface GitHubLinkProps {
   user: string;
   repo: string;
 }
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const GitHubLink: React.FC<StarCounterProps> = ({ user, repo }) => {
+const GitHubLink: React.FC<GitHubLinkProps> = ({ user, repo }) => {
   const [starCount, setStarCount] = React.useState<number | undefined>();
   const classes = useStyles();
 
