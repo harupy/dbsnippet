@@ -7,19 +7,18 @@ import { TEXTAREA_ID } from './constants';
     const activeCell = document.querySelector('div.is-editing div.CodeMirror');
 
     if (activeCell && activeCell.CodeMirror) {
-      // Overwrite the default sippets with the custom snippets
-      const userSnippets = JSON.parse(
+      const customSnippets = JSON.parse(
         document.querySelector(`textarea#${TEXTAREA_ID}`).textContent,
       );
-      const snippets = { ...defaultSnippets, ...userSnippets };
+
+      // Override the default sippets with the custom snippets
+      const snippets = { ...defaultSnippets, ...customSnippets };
       const cm = activeCell.CodeMirror;
 
       if (!cm.snippets) {
+        cm.snippets = snippets;
         enableSnippets(cm);
       }
-
-      // Attach the snippets to the cell so
-      cm.snippets = snippets;
     }
   };
 

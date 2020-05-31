@@ -12,7 +12,7 @@ import { TEXTAREA_ID } from './constants';
   };
 
   const updateSnippets = changes => {
-    // Remove the old textarea that contain the custom snippets
+    // Remove the old textarea that contains the custom snippets
     const oldTextarea = document.querySelector(`textarea#${TEXTAREA_ID}`);
     if (oldTextarea) {
       oldTextarea.remove();
