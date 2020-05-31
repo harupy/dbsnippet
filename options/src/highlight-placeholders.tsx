@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { splitByPlaceholders } from './utils';
 
-const highlightPlaceholders: React.FC<{
+export const HighlightPlaceholders: React.FC<{
   body: string;
   backgroundColor: string;
 }> = ({ body, backgroundColor }) => {
@@ -18,5 +18,3 @@ const highlightPlaceholders: React.FC<{
     </div>
   );
 };
-
-export default highlightPlaceholders;

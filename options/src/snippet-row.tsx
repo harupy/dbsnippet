@@ -5,8 +5,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TextField from '@material-ui/core/TextField';
 
-import SnippetContext from './contexts/snippets-context';
-import HighlightPlaceholders from './highlight-placeholders';
+import { SnippetsContext } from './contexts/snippets-context';
+import { HighlightPlaceholders } from './highlight-placeholders';
 
 type RowProps = {
   prefix: string;
@@ -27,8 +27,13 @@ const useStyles = makeStyles({
   },
 });
 
-const SnippetRow: React.FC<RowProps> = ({ prefix, body, selected, index }) => {
-  const { updateSnippet, selectSnippet } = React.useContext(SnippetContext);
+export const SnippetRow: React.FC<RowProps> = ({
+  prefix,
+  body,
+  selected,
+  index,
+}) => {
+  const { updateSnippet, selectSnippet } = React.useContext(SnippetsContext);
   const classes = useStyles();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -70,5 +75,3 @@ const SnippetRow: React.FC<RowProps> = ({ prefix, body, selected, index }) => {
     </TableRow>
   );
 };
-
-export default SnippetRow;

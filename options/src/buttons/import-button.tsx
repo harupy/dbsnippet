@@ -2,11 +2,11 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop';
 
-import SnippetContext from '../contexts/snippets-context';
+import { SnippetsContext } from '../contexts/snippets-context';
 import { useButtonStyles } from './button-styles';
 
 export const ImportButton: React.FC<{}> = () => {
-  const { setSnippets } = React.useContext(SnippetContext);
+  const { setSnippets } = React.useContext(SnippetsContext);
   const classes = useButtonStyles();
 
   const handleFile = (file: File | undefined): void => {

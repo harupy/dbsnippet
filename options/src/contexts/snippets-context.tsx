@@ -30,7 +30,9 @@ type SnippetsProviderProps = {
   children: React.ReactNode;
 };
 
-const SnippetsContext = React.createContext<Partial<SnippetsContextProps>>({});
+export const SnippetsContext = React.createContext<
+  Partial<SnippetsContextProps>
+>({});
 
 export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
   children,
@@ -155,5 +157,3 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
     </SnippetsContext.Provider>
   );
 };
-
-export default SnippetsContext;

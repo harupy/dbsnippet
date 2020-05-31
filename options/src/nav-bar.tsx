@@ -4,9 +4,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-import GitHubLink from './github-link';
+import { GitHubLink } from './github-link';
 
-const useStyles = makeStyles({
+export const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-const NavBar: React.FC<{}> = () => {
+export const NavBar: React.FC<{}> = () => {
   const classes = useStyles();
 
   return (
@@ -31,5 +31,3 @@ const NavBar: React.FC<{}> = () => {
     </div>
   );
 };
-
-export default NavBar;

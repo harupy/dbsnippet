@@ -2,10 +2,10 @@ import * as React from 'react';
 import Container from '@material-ui/core/Container';
 
 import { SnippetsProvider } from './contexts/snippets-context';
-import NavBar from './nav-bar';
-import SnippetsTable from './snippets-table';
+import { NavBar } from './nav-bar';
+import { SnippetsTable } from './snippets-table';
 
-const App: React.FC<{}> = () => {
+export const App: React.FC<{}> = () => {
   return (
     <SnippetsProvider>
       <Container>
@@ -15,5 +15,3 @@ const App: React.FC<{}> = () => {
     </SnippetsProvider>
   );
 };
-
-export default App;
