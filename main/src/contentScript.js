@@ -2,7 +2,7 @@ import { TEXTAREA_ID } from './constants';
 
 (() => {
   const injectSnippets = snippets => {
-    // insert the user snippets as a textarea
+    // Insert the custom snippets as an invisible textarea
     const textarea = document.createElement('textarea');
     textarea.textContent = JSON.stringify(snippets);
     textarea.id = TEXTAREA_ID;
