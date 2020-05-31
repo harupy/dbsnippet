@@ -82,8 +82,6 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
     value: string,
     index: number,
   ): void => {
-    // event.persist();
-    // const { name, value } = event.target;
     setSnippets(oldSnippets => {
       const newSnippets = [...oldSnippets];
       newSnippets[index][key] = value;
@@ -93,8 +91,6 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
   };
 
   const selectAll = (): void => {
-    // event.persist();
-    // const { name, value } = event.target;
     setSnippets(oldSnippets => {
       return oldSnippets.map(({ prefix, body }) => ({
         prefix,
@@ -105,8 +101,6 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
   };
 
   const deselectAll = (): void => {
-    // event.persist();
-    // const { name, value } = event.target;
     setSnippets(oldSnippets => {
       return oldSnippets.map(({ prefix, body }) => ({
         prefix,
@@ -117,8 +111,6 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
   };
 
   const deleteSelected = (): void => {
-    // event.persist();
-    // const { name, value } = event.target;
     setSnippets(oldSnippets => {
       return oldSnippets.filter(({ selected }) => !selected);
     });
