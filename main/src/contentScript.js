@@ -1,9 +1,8 @@
 import { TEXTAREA_ID } from './constants';
 
 (() => {
-  // Get custom snippets from chrome storage and inject it as a textarea content
   const injectSnippets = snippets => {
-    // insert the user snippets as a textarea
+    // Insert the custom snippets as an invisible textarea
     const textarea = document.createElement('textarea');
     textarea.textContent = JSON.stringify(snippets);
     textarea.id = TEXTAREA_ID;
@@ -12,7 +11,7 @@ import { TEXTAREA_ID } from './constants';
   };
 
   const updateSnippets = changes => {
-    // Remove the old textarea that contain the custom snippets
+    // Remove the old textarea that contains the custom snippets
     const oldTextarea = document.querySelector(`textarea#${TEXTAREA_ID}`);
     if (oldTextarea) {
       oldTextarea.remove();
