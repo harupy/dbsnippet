@@ -1,12 +1,12 @@
-type Match = {
+type MatchRange = {
   start: number | undefined;
   end: number | undefined;
 };
 
 export const replacePlaceholders = (
   body: string,
-  ranges: Match[] = [],
-): [string, Match[]] => {
+  ranges: MatchRange[] = [],
+): [string, MatchRange[]] => {
   const pattern = /\$\{([^{}]*)\}/;
   const match = body.match(pattern);
   if (!match) {
