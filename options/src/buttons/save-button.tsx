@@ -2,11 +2,11 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 
-import SnippetContext from '../contexts/snippets-context';
+import { SnippetsContext } from '../contexts/snippets-context';
 import { useButtonStyles } from './button-styles';
 
 export const SaveButton: React.FC<{}> = () => {
-  const { updated, saveSnippets } = React.useContext(SnippetContext);
+  const { updated, saveSnippets } = React.useContext(SnippetsContext);
   const classes = useButtonStyles();
 
   return (

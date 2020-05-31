@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const GitHubLink: React.FC<GitHubLinkProps> = ({ user, repo }) => {
+export const GitHubLink: React.FC<GitHubLinkProps> = ({ user, repo }) => {
   const [starCount, setStarCount] = React.useState<number | undefined>();
   const classes = useStyles();
 
@@ -53,5 +53,3 @@ const GitHubLink: React.FC<GitHubLinkProps> = ({ user, repo }) => {
     </Button>
   );
 };
-
-export default GitHubLink;

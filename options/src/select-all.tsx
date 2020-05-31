@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import SnippetContext from './contexts/snippets-context';
+import { SnippetsContext } from './contexts/snippets-context';
 
-const SelectAll: React.FC<{}> = () => {
-  const { snippets, selectAll, deselectAll } = React.useContext(SnippetContext);
+export const SelectAll: React.FC<{}> = () => {
+  const { snippets, selectAll, deselectAll } = React.useContext(
+    SnippetsContext,
+  );
 
   const numSelected = snippets?.filter(({ selected }) => selected).length || 0;
   const allSelected = numSelected > 0 && numSelected === snippets?.length;
@@ -19,5 +21,3 @@ const SelectAll: React.FC<{}> = () => {
     />
   );
 };
-
-export default SelectAll;

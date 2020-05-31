@@ -8,9 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import SnippetContext from './contexts/snippets-context';
-import SnippetRow from './snippet-row';
-import SelectAll from './select-all';
+import { SnippetsContext } from './contexts/snippets-context';
+import { SnippetRow } from './snippet-row';
+import { SelectAll } from './select-all';
 import {
   AddButton,
   SaveButton,
@@ -35,8 +35,8 @@ const useStyles = makeStyles({
   },
 });
 
-const SnippetsTable: React.FC<{}> = () => {
-  const { snippets } = React.useContext(SnippetContext);
+export const SnippetsTable: React.FC<{}> = () => {
+  const { snippets } = React.useContext(SnippetsContext);
   const classes = useStyles();
 
   const renderTable = (): JSX.Element => {
@@ -93,5 +93,3 @@ const SnippetsTable: React.FC<{}> = () => {
     </div>
   );
 };
-
-export default SnippetsTable;
