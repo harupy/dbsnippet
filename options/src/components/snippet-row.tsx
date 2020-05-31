@@ -68,7 +68,6 @@ export const SnippetRow: React.FC<RowProps> = ({
         />
       </TableCell>
 
-      {/* Input boxes */}
       {renderInputBoxes()}
 
       {/* Expanded snippet */}
