@@ -17,7 +17,6 @@ interface SnippetsContextProps {
   deleteSnippet: (index: number) => void;
   updateSnippet: (key: string, value: string, index: number) => void;
   saveSnippets: () => void;
-
   updated: boolean;
 }
 
