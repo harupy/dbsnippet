@@ -3,11 +3,11 @@ import Button from '@material-ui/core/Button';
 import VerticalAlignBottomIcon from '@material-ui/icons/VerticalAlignBottom';
 
 import SnippetContext from '../contexts/snippets-context';
-import useStyles from './button-styles';
+import { useButtonStyles } from './button-styles';
 
-const SaveButton: React.FC<{}> = () => {
+export const ExportButton: React.FC<{}> = () => {
   const { snippets } = React.useContext(SnippetContext);
-  const classes = useStyles();
+  const classes = useButtonStyles();
 
   const encodeSnippets = (): string => {
     return encodeURIComponent(
@@ -32,5 +32,3 @@ const SaveButton: React.FC<{}> = () => {
     </Button>
   );
 };
-
-export default SaveButton;

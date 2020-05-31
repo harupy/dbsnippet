@@ -3,11 +3,11 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 
 import SnippetContext from '../contexts/snippets-context';
-import useStyles from './button-styles';
+import { useButtonStyles } from './button-styles';
 
-const AddButton: React.FC<{}> = () => {
+export const AddButton: React.FC<{}> = () => {
   const { addSnippet } = React.useContext(SnippetContext);
-  const classes = useStyles();
+  const classes = useButtonStyles();
 
   return (
     <Button
@@ -22,5 +22,3 @@ const AddButton: React.FC<{}> = () => {
     </Button>
   );
 };
-
-export default AddButton;

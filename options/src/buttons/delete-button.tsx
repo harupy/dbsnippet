@@ -3,11 +3,11 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import SnippetContext from '../contexts/snippets-context';
-import useStyles from './button-styles';
+import { useButtonStyles } from './button-styles';
 
-const DeleteButton: React.FC<{}> = () => {
+export const DeleteButton: React.FC<{}> = () => {
   const { deleteSelected, snippets } = React.useContext(SnippetContext);
-  const classes = useStyles();
+  const classes = useButtonStyles();
 
   const disabled = snippets?.every(({ selected }) => !selected);
 
@@ -25,5 +25,3 @@ const DeleteButton: React.FC<{}> = () => {
     </Button>
   );
 };
-
-export default DeleteButton;

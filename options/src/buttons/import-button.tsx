@@ -3,11 +3,11 @@ import Button from '@material-ui/core/Button';
 import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop';
 
 import SnippetContext from '../contexts/snippets-context';
-import useStyles from './button-styles';
+import { useButtonStyles } from './button-styles';
 
-const SaveButton: React.FC<{}> = () => {
+export const ImportButton: React.FC<{}> = () => {
   const { setSnippets } = React.useContext(SnippetContext);
-  const classes = useStyles();
+  const classes = useButtonStyles();
 
   const handleFile = (file: File | undefined): void => {
     const reader = new FileReader();
@@ -53,5 +53,3 @@ const SaveButton: React.FC<{}> = () => {
     </Button>
   );
 };
-
-export default SaveButton;
