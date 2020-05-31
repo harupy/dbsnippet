@@ -8,6 +8,7 @@ type Snippet = {
 
 interface SnippetsContextProps {
   snippets: Snippet[];
+  updated: boolean;
   setSnippets: (snippets: Snippet[]) => void;
   addSnippet: (snippet: Snippet) => void;
   selectSnippet: (selected: boolean, index: number) => void;
@@ -17,7 +18,6 @@ interface SnippetsContextProps {
   deleteSnippet: (index: number) => void;
   updateSnippet: (key: string, value: string, index: number) => void;
   saveSnippets: () => void;
-  updated: boolean;
 }
 
 interface SnippetsProviderProps {
