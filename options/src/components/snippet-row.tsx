@@ -45,6 +45,20 @@ export const SnippetRow: React.FC<RowProps> = ({
     }
   };
 
+  const renderInputBoxes = (): JSX.Element[] =>
+    Object.entries({ prefix, body }).map(([key, value]) => (
+      <TableCell key={`${index}-${key}`}>
+        <TextField
+          name={key}
+          value={value}
+          onChange={handleInputChange}
+          variant="outlined"
+          size="small"
+          fullWidth
+        />
+      </TableCell>
+    ));
+
   return (
     <TableRow>
       <TableCell className={classes.checkbox}>
@@ -55,18 +69,7 @@ export const SnippetRow: React.FC<RowProps> = ({
       </TableCell>
 
       {/* Input boxes */}
-      {Object.entries({ prefix, body }).map(([key, value]) => (
-        <TableCell key={`${index}-${key}`}>
-          <TextField
-            name={key}
-            value={value}
-            onChange={handleInputChange}
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-        </TableCell>
-      ))}
+      {renderInputBoxes()}
 
       {/* Expanded snippet */}
       <TableCell>
