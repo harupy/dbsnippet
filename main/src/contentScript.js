@@ -1,4 +1,4 @@
-import { TEXTAREA_ID } from './constans';
+import { TEXTAREA_ID } from './constants';
 
 (() => {
   // Get custom snippets from chrome storage and inject it as a textarea content

@@ -1,6 +1,6 @@
-import enableSnippets from './enableSnippets';
-import defaultSnippets from './defaultSnippets';
-import { TEXTAREA_ID } from './constans';
+import { enableSnippets } from './enableSnippets';
+import { defaultSnippets } from './defaultSnippets';
+import { TEXTAREA_ID } from './constants';
 
 (() => {
   const updateCell = () => {

@@ -1,4 +1,4 @@
-export default {
+export const defaultSnippets = {
   // ${...} represents a placeholder.
 
   // DataFrame methods
