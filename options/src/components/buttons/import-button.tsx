@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop';
 
-import { SnippetsContext } from '../contexts/snippets-context';
+import { SnippetsContext } from '../../contexts/snippets-context';
 import { useButtonStyles } from './button-styles';
 
 export const ImportButton: React.FC<{}> = () => {

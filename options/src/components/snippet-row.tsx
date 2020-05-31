@@ -5,7 +5,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TextField from '@material-ui/core/TextField';
 
-import { SnippetsContext } from './contexts/snippets-context';
+import { SnippetsContext } from '../contexts/snippets-context';
 import { HighlightPlaceholders } from './highlight-placeholders';
 
 type RowProps = {

@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import { SnippetsContext } from './contexts/snippets-context';
+import { SnippetsContext } from '../contexts/snippets-context';
 import { SnippetRow } from './snippet-row';
 import { SelectAll } from './select-all';
 import {
@@ -80,15 +80,19 @@ export const SnippetsTable: React.FC<{}> = () => {
     );
   };
 
+  const renderButtons = (): JSX.Element => (
+    <div className={classes.buttons}>
+      <AddButton />
+      <DeleteButton />
+      <SaveButton />
+      <ExportButton />
+      <ImportButton />
+    </div>
+  );
+
   return (
     <div className={classes.table}>
-      <div className={classes.buttons}>
-        <AddButton />
-        <DeleteButton />
-        <SaveButton />
-        <ExportButton />
-        <ImportButton />
-      </div>
+      {renderButtons()}
       {renderTable()}
     </div>
   );
