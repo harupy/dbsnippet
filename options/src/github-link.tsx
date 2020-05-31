@@ -36,7 +36,7 @@ const GitHubLink: React.FC<StarCounterProps> = ({ user, repo }) => {
 
   React.useEffect(() => {
     fetchStarCount();
-  });
+  }, []);
 
   if (starCount === undefined) {
     return null;
