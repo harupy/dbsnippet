@@ -3,11 +3,11 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 
 import SnippetContext from '../contexts/snippets-context';
-import useStyles from './button-styles';
+import { useButtonStyles } from './button-styles';
 
-const SaveButton: React.FC<{}> = () => {
+export const SaveButton: React.FC<{}> = () => {
   const { updated, saveSnippets } = React.useContext(SnippetContext);
-  const classes = useStyles();
+  const classes = useButtonStyles();
 
   return (
     <Button
@@ -23,5 +23,3 @@ const SaveButton: React.FC<{}> = () => {
     </Button>
   );
 };
-
-export default SaveButton;

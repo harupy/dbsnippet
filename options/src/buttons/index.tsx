@@ -1,7 +1,5 @@
-import AddButton from './add-button';
-import SaveButton from './save-button';
-import DeleteButton from './delete-button';
-import ExportButton from './export-button';
-import ImportButton from './import-button';
-
-export { AddButton, DeleteButton, SaveButton, ExportButton, ImportButton };
+export * from './add-button';
+export * from './save-button';
+export * from './delete-button';
+export * from './export-button';
+export * from './import-button';
