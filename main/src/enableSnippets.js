@@ -72,7 +72,7 @@ const expandSnippet = cm => {
   return false;
 };
 
-export default cm => {
+export const enableSnippets = cm => {
   // If a matched snippet is not found, execute the default Tab function
   const defaultTabFunc = cm.options.extraKeys.Tab;
   cm.options.extraKeys.Tab = cm_ => !expandSnippet(cm_) && defaultTabFunc(cm_);
