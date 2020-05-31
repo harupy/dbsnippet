@@ -1,13 +1,14 @@
 import * as React from 'react';
 
-export type Snippet = {
+type Snippet = {
   prefix: string;
   body: string;
   selected: boolean;
 };
 
-type SnippetsContextProps = {
+interface SnippetsContextProps {
   snippets: Snippet[];
+  updated: boolean;
   setSnippets: (snippets: Snippet[]) => void;
   addSnippet: (snippet: Snippet) => void;
   selectSnippet: (selected: boolean, index: number) => void;
@@ -15,20 +16,13 @@ type SnippetsContextProps = {
   deselectAll: () => void;
   deleteSelected: () => void;
   deleteSnippet: (index: number) => void;
-  updateSnippet: (
-    // event: React.ChangeEvent<HTMLInputElement>,
-    key: string,
-    value: string,
-    index: number,
-  ) => void;
+  updateSnippet: (key: string, value: string, index: number) => void;
   saveSnippets: () => void;
+}
 
-  updated: boolean;
-};
-
-type SnippetsProviderProps = {
+interface SnippetsProviderProps {
   children: React.ReactNode;
-};
+}
 
 export const SnippetsContext = React.createContext<
   Partial<SnippetsContextProps>

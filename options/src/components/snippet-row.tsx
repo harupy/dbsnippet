@@ -8,12 +8,12 @@ import TextField from '@material-ui/core/TextField';
 import { SnippetsContext } from '../contexts/snippets-context';
 import { HighlightPlaceholders } from './highlight-placeholders';
 
-type RowProps = {
+interface RowProps {
   prefix: string;
   body: string;
   selected: boolean;
   index: number;
-};
+}
 
 const useStyles = makeStyles({
   checkbox: {
