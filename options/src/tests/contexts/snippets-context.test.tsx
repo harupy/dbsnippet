@@ -77,9 +77,13 @@ const Button: React.FC<{ dataTestId: string; onClick: () => void }> = ({
   );
 };
 
-function ByDataTestId(id: string): string {
+const ByDataTestId = (id: string): string => {
   return `[data-testid="${id}"]`;
-}
+};
+
+const getSnippets = (w: ReactWrapper): SnippetItem[] => {
+  return JSON.parse(w.find(ByDataTestId('snippets')).text());
+};
 
 describe('SnippetsContext', () => {
   let wrapper: ReactWrapper;
@@ -135,10 +139,7 @@ describe('SnippetsContext', () => {
       { prefix: 'foo', body: 'bar', selected: false },
       { prefix: 'yes', body: 'no', selected: false },
     ];
-
-    expect(JSON.parse(wrapper.find(ByDataTestId('snippets')).text())).toEqual(
-      expectedSnippets,
-    );
+    expect(getSnippets(wrapper)).toEqual(expectedSnippets);
   });
 
   it('selectSnippet', () => {
@@ -162,12 +163,8 @@ describe('SnippetsContext', () => {
     );
 
     wrapper.find(Button).find(ByDataTestId('selectSnippet')).simulate('click');
-
     expectedSnippets = [{ prefix: 'foo', body: 'bar', selected: true }];
-
-    expect(JSON.parse(wrapper.find(ByDataTestId('snippets')).text())).toEqual(
-      expectedSnippets,
-    );
+    expect(getSnippets(wrapper)).toEqual(expectedSnippets);
   });
 
   it('deleteSnippet', () => {
@@ -191,12 +188,8 @@ describe('SnippetsContext', () => {
     );
 
     wrapper.find(ByDataTestId('deleteSnippet')).simulate('click');
-
     expectedSnippets = [];
-
-    expect(JSON.parse(wrapper.find(ByDataTestId('snippets')).text())).toEqual(
-      expectedSnippets,
-    );
+    expect(getSnippets(wrapper)).toEqual(expectedSnippets);
   });
 
   it('deleteSelected', () => {
@@ -227,12 +220,8 @@ describe('SnippetsContext', () => {
 
     wrapper.find(ByDataTestId('selectSnippet')).simulate('click');
     wrapper.find(ByDataTestId('deleteSelected')).simulate('click');
-
     expectedSnippets = [{ prefix: 'yes', body: 'no', selected: false }];
-
-    expect(JSON.parse(wrapper.find(ByDataTestId('snippets')).text())).toEqual(
-      expectedSnippets,
-    );
+    expect(getSnippets(wrapper)).toEqual(expectedSnippets);
   });
 
   it('selectAll', () => {
@@ -258,10 +247,7 @@ describe('SnippetsContext', () => {
       { prefix: 'foo', body: 'bar', selected: true },
       { prefix: 'yes', body: 'no', selected: true },
     ];
-
-    expect(JSON.parse(wrapper.find(ByDataTestId('snippets')).text())).toEqual(
-      expectedSnippets,
-    );
+    expect(getSnippets(wrapper)).toEqual(expectedSnippets);
   });
 
   it('selectAll', () => {
@@ -294,10 +280,7 @@ describe('SnippetsContext', () => {
       { prefix: 'foo', body: 'bar', selected: false },
       { prefix: 'yes', body: 'no', selected: false },
     ];
-
-    expect(JSON.parse(wrapper.find(ByDataTestId('snippets')).text())).toEqual(
-      expectedSnippets,
-    );
+    expect(getSnippets(wrapper)).toEqual(expectedSnippets);
   });
 
   it('updateSnippet', () => {
@@ -326,11 +309,7 @@ describe('SnippetsContext', () => {
 
     wrapper.find(ByDataTestId('updateSnippet1')).simulate('click');
     wrapper.find(ByDataTestId('updateSnippet2')).simulate('click');
-
     expectedSnippets = [{ prefix: 'yes', body: 'no', selected: false }];
-
-    expect(JSON.parse(wrapper.find(ByDataTestId('snippets')).text())).toEqual(
-      expectedSnippets,
-    );
+    expect(getSnippets(wrapper)).toEqual(expectedSnippets);
   });
 });
