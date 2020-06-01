@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
+import { Constants } from '../constants';
 import { GitHubLink, TweetLink } from './icon-links';
 
 const useStyles = makeStyles({
@@ -25,8 +26,8 @@ export const NavBar: React.FC<{}> = () => {
           <Typography variant="h5" className={classes.title}>
             DBSnippet
           </Typography>
-          <TweetLink url="https://github.com/harupy/dbsnippet" />
-          <GitHubLink user="harupy" repo="dbsnippet" />
+          <TweetLink url={Constants.REPO_URL} />
+          <GitHubLink user={Constants.REPO_OWNER} repo={Constants.REPO_NAME} />
         </Toolbar>
       </AppBar>
     </div>
