@@ -1,39 +1,32 @@
-export type MatchRange = {
+export type SelectRange = {
   start: number | undefined;
   end: number | undefined;
 };
 
-export const findPlaceholder = (text: string): RegExpMatchArray | null => {
-  return text.match(/\$\{([^{}]*)\}/);
-};
+export const findMatches = (
+  str: string,
+  regex: RegExp,
+  matches: string[] = [],
+): string[] => {
+  const match = regex.exec(str);
 
-export const replacePlaceholders = (
-  body: string,
-  ranges: MatchRange[] = [],
-): [string, MatchRange[]] => {
-  const match = findPlaceholder(body);
   if (!match) {
-    return [body, ranges];
+    return matches;
   }
-  const [placeholder, hint] = match;
-  const newBody = body.replace(placeholder, hint); // Convert ${<hint>} -> <hint>
-  const start = match.index;
-  const end = start ? start + hint.length : undefined;
-  return replacePlaceholders(newBody, [...ranges, { start, end }]);
+
+  return findMatches(str, regex, [...matches, match[1]]);
 };
 
-export const splitByPlaceholders = (body: string): [string[], string[]] => {
-  const [newBody, ranges] = replacePlaceholders(body);
-  const placeholders = ranges.map(({ start, end }) =>
-    newBody.slice(start, end),
-  );
-  const pieces = ranges
-    .concat({ start: newBody.length, end: undefined })
-    .map((range, idx, arr) => {
-      return newBody.slice(idx > 0 ? arr[idx - 1].end : 0, range.start);
-    });
+export const findPlaceholders = (str: string): string[] => {
+  return findMatches(str, /\$\{([^{}]*)\}/g);
+};
 
-  return [placeholders, pieces];
+export const splitByPlaceholder = (str: string): string[] => {
+  return str.split(/\$\{[^{}]*\}/g);
+};
+
+export const sliceSnippet = (snippet: string): [string[], string[]] => {
+  return [findPlaceholders(snippet), splitByPlaceholder(snippet)];
 };
 
 export const nbsp = (repeat = 1): string => '\u00A0'.repeat(repeat);
