@@ -6,59 +6,51 @@ describe('utils', () => {
     expect(utils.nbsp(2)).toEqual('\u00A0\u00A0');
   });
 
-  it('findPlaceholder', () => {
-    let match: RegExpMatchArray | null;
-
-    // Contains placeholder
-    match = utils.findPlaceholder('func(${x})');
-    expect(match?.[0]).toEqual('${x}');
-    expect(match?.[1]).toEqual('x');
-
-    // Does not contain placeholder
-    match = utils.findPlaceholder('func(x)');
-    expect(match).toEqual(null);
-  });
-
-  it('replacePlaceholders', () => {
-    let body: string;
-    let ranges: utils.MatchRange[];
+  it('findPlaceholders', () => {
+    let placeholders: string[];
 
     // No placeholder
-    [body, ranges] = utils.replacePlaceholders('func()');
-    expect(body).toEqual('func()');
-    expect(ranges).toEqual([]);
+    placeholders = utils.findPlaceholders('func(x)');
+    expect(placeholders).toEqual([]);
 
     // Single placeholder
-    [body, ranges] = utils.replacePlaceholders('func(${x})');
-    expect(body).toEqual('func(x)');
-    expect(ranges).toEqual([{ start: 5, end: 6 }]);
+    placeholders = utils.findPlaceholders('func(${x})');
+    expect(placeholders).toEqual(['x']);
 
-    // Multiple placeholders
-    [body, ranges] = utils.replacePlaceholders('func(${x}, ${x})');
-    expect(body).toEqual('func(x, x)');
-    expect(ranges).toEqual([
-      { start: 5, end: 6 },
-      { start: 8, end: 9 },
-    ]);
+    // Multiple placeholder
+    placeholders = utils.findPlaceholders('func(${x}, ${x})');
+    expect(placeholders).toEqual(['x', 'x']);
+
+    // When a placeholder is located at the start
+    placeholders = utils.findPlaceholders('${x}.func()');
+    expect(placeholders).toEqual(['x']);
+
+    // When a placeholder is located at the end
+    placeholders = utils.findPlaceholders('func().${x}');
+    expect(placeholders).toEqual(['x']);
   });
 
-  it('splitByPlaceholders', () => {
-    let placeholders: string[];
+  it('splitByPlaceholder', () => {
     let pieces: string[];
 
     // No placeholder
-    [placeholders, pieces] = utils.splitByPlaceholders('func()');
-    expect(placeholders).toEqual([]);
+    pieces = utils.splitByPlaceholder('func()');
     expect(pieces).toEqual(['func()']);
 
     // Single placeholder
-    [placeholders, pieces] = utils.splitByPlaceholders('func(${x})');
-    expect(placeholders).toEqual(['x']);
+    pieces = utils.splitByPlaceholder('func(${x})');
     expect(pieces).toEqual(['func(', ')']);
 
     // Multiple placeholders
-    [placeholders, pieces] = utils.splitByPlaceholders('func(${x}, ${x})');
-    expect(placeholders).toEqual(['x', 'x']);
+    pieces = utils.splitByPlaceholder('func(${x}, ${x})');
     expect(pieces).toEqual(['func(', ', ', ')']);
+
+    // When a placeholder is located at the start
+    pieces = utils.splitByPlaceholder('${x}.func()');
+    expect(pieces).toEqual(['', '.func()']);
+
+    // When a placeholder is located at the end
+    pieces = utils.splitByPlaceholder('func().${x}');
+    expect(pieces).toEqual(['func().', '']);
   });
 });
