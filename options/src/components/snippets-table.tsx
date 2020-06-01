@@ -40,14 +40,8 @@ export const SnippetsTable: React.FC<{}> = () => {
   const classes = useStyles();
 
   const renderTable = (): JSX.Element => {
-    const rows = snippets?.map(({ prefix, body, selected }, index) => (
-      <SnippetRow
-        prefix={prefix}
-        body={body}
-        selected={selected}
-        index={index}
-        key={index}
-      />
+    const rows = snippets?.map(({ prefix, body }, index) => (
+      <SnippetRow prefix={prefix} body={body} index={index} key={index} />
     ));
 
     return (
