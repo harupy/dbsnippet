@@ -37,5 +37,17 @@
     "react/prop-types": ["off"],
     "no-template-curly-in-string": ["off"],
     "no-unused-expressions": ["error", { "allowTernary": true }]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.test.ts", "*.test.tsx", "setupTests.ts"],
+      "rules": {
+        "import/no-unresolved": ["off"],
+        "import/no-extraneous-dependencies": [
+          "error",
+          { "devDependencies": true }
+        ]
+      }
+    }
+  ]
 }
