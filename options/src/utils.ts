@@ -1,4 +1,4 @@
-type MatchRange = {
+export type MatchRange = {
   start: number | undefined;
   end: number | undefined;
 };
