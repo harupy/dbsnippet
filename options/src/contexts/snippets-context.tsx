@@ -1,6 +1,21 @@
 import * as React from 'react';
 
-import { SnippetItem } from '../types';
+import { SnippetItem, ObjStr } from '../types';
+
+export const objToSnippets = (obj: ObjStr): SnippetItem[] => {
+  return Object.entries(obj).map(([key, value]) => ({
+    prefix: key,
+    body: value,
+    selected: false,
+  }));
+};
+
+export const snippetsToObj = (snippets: SnippetItem[]): ObjStr => {
+  return snippets.reduce(
+    (acc, { prefix, body }) => ({ ...acc, [prefix]: body }),
+    {},
+  );
+};
 
 interface SnippetsContextProps {
   snippets: SnippetItem[];
@@ -18,6 +33,19 @@ interface SnippetsContextProps {
 
 interface SnippetsProviderProps {
   children: React.ReactNode;
+  useChromeStorageSyncGet: {
+    <T>(
+      setter: React.Dispatch<React.SetStateAction<T>>,
+      f: { (obj: ObjStr): T },
+    ): {
+      (): void;
+    };
+  };
+  useChromeStorageSyncSet: {
+    <T>(f: { (snippets: T): ObjStr }): {
+      (snippets: T): void;
+    };
+  };
 }
 
 export const SnippetsContext = React.createContext<
@@ -26,30 +54,19 @@ export const SnippetsContext = React.createContext<
 
 export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
   children,
+  useChromeStorageSyncGet,
+  useChromeStorageSyncSet,
 }) => {
   const [snippets, setSnippets] = React.useState<SnippetItem[]>([]);
   const [updated, setUpdated] = React.useState<boolean>(false);
 
-  const loadSnippets = (): void => {
-    chrome.storage.sync.get(items => {
-      // Snippets are stored as an object. Convert it to a list of (key, value).
-      const snippetsList = Object.entries(items).map(([prefix, body]) => ({
-        prefix,
-        body,
-        selected: false,
-      }));
-      setSnippets(snippetsList);
-    });
-  };
+  const loadSnippets = useChromeStorageSyncGet<SnippetItem[]>(
+    setSnippets,
+    objToSnippets,
+  );
 
   const saveSnippets = (): void => {
-    chrome.storage.sync.clear();
-    // Convert to an object.
-    const items = snippets?.reduce(
-      (acc, { prefix, body }) => ({ ...acc, [prefix]: body }),
-      {},
-    );
-    chrome.storage.sync.set(items || {});
+    useChromeStorageSyncSet<SnippetItem[]>(snippetsToObj)(snippets);
     setUpdated(false);
   };
 
