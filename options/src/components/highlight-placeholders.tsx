@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { splitByPlaceholders } from './utils';
+import { splitByPlaceholders } from '../utils';
 
 export const HighlightPlaceholders: React.FC<{
   body: string;
