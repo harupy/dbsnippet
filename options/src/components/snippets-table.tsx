@@ -18,7 +18,7 @@ import {
   ImportButton,
   DeleteButton,
 } from './buttons';
-import { nbsp } from './utils';
+import { nbsp } from '../utils';
 
 const useStyles = makeStyles({
   checkbox: {
