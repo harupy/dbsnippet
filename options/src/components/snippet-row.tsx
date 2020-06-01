@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
+import { Snippet } from '../types';
 import { HighlightPlaceholders } from './highlight-placeholders';
 import { SelectSingle } from './select-single';
 import { UpdateSingle } from './update-single';
@@ -29,7 +30,7 @@ export const SnippetRow: React.FC<RowProps> = ({ prefix, body, index }) => {
   const classes = useStyles();
 
   const renderInputBoxes = (): JSX.Element[] =>
-    Object.keys({ prefix, body }).map((key: 'prefix' | 'body') => {
+    Object.keys({ prefix, body }).map((key: keyof Snippet) => {
       return (
         <TableCell key={`${index}-${key}`}>
           <UpdateSingle keyName={key} index={index} />

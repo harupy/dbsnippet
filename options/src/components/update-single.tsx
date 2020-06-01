@@ -1,10 +1,11 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 
+import { Snippet } from '../types';
 import { SnippetsContext } from '../contexts/snippets-context';
 
 interface UpdateSingleProps {
-  keyName: 'prefix' | 'body';
+  keyName: keyof Snippet;
   index: number;
 }
 
