@@ -32,3 +32,5 @@ export const splitByPlaceholders = (body: string): [string[], string[]] => {
 
   return [placeholders, pieces];
 };
+
+export const nbsp = (repeat = 1): string => '\u00A0'.repeat(repeat);

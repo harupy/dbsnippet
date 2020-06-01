@@ -18,6 +18,7 @@ import {
   ImportButton,
   DeleteButton,
 } from './buttons';
+import { nbsp } from './utils';
 
 const useStyles = makeStyles({
   checkbox: {
@@ -56,15 +57,15 @@ export const SnippetsTable: React.FC<{}> = () => {
               {/* eslint-disable-next-line no-template-curly-in-string */}
               <TableCell>{'Body ( ${...} : placholder)'}</TableCell>
               <TableCell>
-                Result (&nbsp;
+                {`Result ${nbsp()}`}
                 <span
                   style={{
                     backgroundColor: 'lightblue',
                   }}
                 >
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {nbsp(6)}
                 </span>
-                &nbsp;: selection after expanded)
+                {`${nbsp()}: selection after expanded)`}
               </TableCell>
             </TableRow>
           </TableHead>
