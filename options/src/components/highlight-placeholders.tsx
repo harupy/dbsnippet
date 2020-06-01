@@ -16,7 +16,9 @@ export const HighlightPlaceholders: React.FC<{
         ) : (
           <span key={piece}>
             {piece}
-            <span style={{ backgroundColor }}>{placeholders[idx]}</span>
+            <span style={{ backgroundColor }} data-testid="highlight">
+              {placeholders[idx]}
+            </span>
           </span>
         ),
       )}
