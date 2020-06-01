@@ -11,12 +11,12 @@ const useStyles = makeStyles({
 });
 
 interface TweetLinkProps {
-  url: string;
+  text: string;
 }
 
-export const TweetLink: React.FC<TweetLinkProps> = ({ url }) => {
+export const TweetLink: React.FC<TweetLinkProps> = ({ text }) => {
   const classes = useStyles();
-  const href = `https://twitter.com/intent/tweet?text=${url}`;
+  const href = `https://twitter.com/intent/tweet?text=${text}`;
   return (
     <Button variant="contained" href={href} className={classes.button}>
       <TwitterIcon />
