@@ -1,16 +1,12 @@
 import * as React from 'react';
 
-type Snippet = {
-  prefix: string;
-  body: string;
-  selected: boolean;
-};
+import { SnippetItem } from '../types';
 
 interface SnippetsContextProps {
-  snippets: Snippet[];
+  snippets: SnippetItem[];
   updated: boolean;
-  setSnippets: (snippets: Snippet[]) => void;
-  addSnippet: (snippet: Snippet) => void;
+  setSnippets: (snippets: SnippetItem[]) => void;
+  addSnippet: (snippet: SnippetItem) => void;
   selectSnippet: (selected: boolean, index: number) => void;
   selectAll: () => void;
   deselectAll: () => void;
@@ -31,7 +27,7 @@ export const SnippetsContext = React.createContext<
 export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
   children,
 }) => {
-  const [snippets, setSnippets] = React.useState<Snippet[]>([]);
+  const [snippets, setSnippets] = React.useState<SnippetItem[]>([]);
   const [updated, setUpdated] = React.useState<boolean>(false);
 
   const loadSnippets = (): void => {
@@ -57,7 +53,7 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
     setUpdated(false);
   };
 
-  const addSnippet = (snippet: Snippet): void => {
+  const addSnippet = (snippet: SnippetItem): void => {
     setSnippets(oldSnippets => [...oldSnippets, snippet]);
     setUpdated(true);
   };
