@@ -2,11 +2,10 @@ import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import TextField from '@material-ui/core/TextField';
 
-import { SnippetsContext } from '../contexts/snippets-context';
 import { HighlightPlaceholders } from './highlight-placeholders';
 import { SelectSingle } from './select-single';
+import { UpdateSingle } from './update-single';
 
 interface RowProps {
   prefix: string;
@@ -27,31 +26,16 @@ const useStyles = makeStyles({
 });
 
 export const SnippetRow: React.FC<RowProps> = ({ prefix, body, index }) => {
-  const { updateSnippet } = React.useContext(SnippetsContext);
   const classes = useStyles();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    e.persist();
-    const { name, value } = e.target;
-
-    if (updateSnippet) {
-      updateSnippet(name, value, index);
-    }
-  };
-
   const renderInputBoxes = (): JSX.Element[] =>
-    Object.entries({ prefix, body }).map(([key, value]) => (
-      <TableCell key={`${index}-${key}`}>
-        <TextField
-          name={key}
-          value={value}
-          onChange={handleInputChange}
-          variant="outlined"
-          size="small"
-          fullWidth
-        />
-      </TableCell>
-    ));
+    Object.keys({ prefix, body }).map((key: 'prefix' | 'body') => {
+      return (
+        <TableCell key={`${index}-${key}`}>
+          <UpdateSingle keyName={key} index={index} />
+        </TableCell>
+      );
+    });
 
   return (
     <TableRow>
