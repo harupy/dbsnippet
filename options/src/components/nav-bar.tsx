@@ -4,8 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-import { GitHubLink } from './github-link';
-import { TweetLink } from './tweet-link';
+import { GitHubLink, TweetLink } from './icon-links';
 
 const useStyles = makeStyles({
   root: {
