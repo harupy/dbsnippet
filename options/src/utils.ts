@@ -1,4 +1,4 @@
-export type MatchRange = {
+export type SelectRange = {
   start: number | undefined;
   end: number | undefined;
 };
@@ -9,26 +9,26 @@ export const findPlaceholder = (text: string): RegExpMatchArray | null => {
 
 export const replacePlaceholders = (
   body: string,
-  ranges: MatchRange[] = [],
-): [string, MatchRange[]] => {
+  ranges: SelectRange[] = [],
+): [string, SelectRange[]] => {
   const match = findPlaceholder(body);
   if (!match) {
     return [body, ranges];
   }
   const [placeholder, hint] = match;
-  const newBody = body.replace(placeholder, hint); // Convert ${<hint>} -> <hint>
+  const newBody = body.replace(placeholder, hint);
   const start = match.index;
-  const end = start ? start + hint.length : undefined;
+  const end = start ? start + hint.length : Infinity;
   return replacePlaceholders(newBody, [...ranges, { start, end }]);
 };
 
 export const splitByPlaceholders = (body: string): [string[], string[]] => {
-  const [newBody, ranges] = replacePlaceholders(body);
-  const placeholders = ranges.map(({ start, end }) =>
+  const [newBody, selectRanges] = replacePlaceholders(body);
+  const placeholders = selectRanges.map(({ start, end }) =>
     newBody.slice(start, end),
   );
-  const pieces = ranges
-    .concat({ start: newBody.length, end: undefined })
+  const pieces = selectRanges
+    .concat({ start: newBody.length, end: Infinity })
     .map((range, idx, arr) => {
       return newBody.slice(idx > 0 ? arr[idx - 1].end : 0, range.start);
     });
