@@ -1,19 +1,15 @@
-import * as React from 'react';
+import { ObjStr, SetState } from '../types';
 
-import { ObjStr } from '../types';
-
-interface FromObj<T> {
+export interface FromObj<T> {
   (obj: ObjStr): T;
 }
 
-interface ToObj<T> {
+export interface ToObj<T> {
   (t: T): ObjStr;
 }
 
-type Setter<T> = React.Dispatch<React.SetStateAction<T>>;
-
 export const useChromeStorageSyncGet = <T>(
-  setter: Setter<T>,
+  setter: SetState<T>,
   f: FromObj<T>,
 ): { (): void } => (): void => {
   chrome.storage.sync.get(items => setter(f(items)));
