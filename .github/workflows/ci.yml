@@ -22,12 +22,32 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
-      - name: Install Dependencies
+      - name: Install dependencies
         working-directory: ${{ matrix.work_dir }}
         run: npm install
       - name: Run Lint
         working-directory: ${{ matrix.work_dir }}
         run: npm run lint
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        work_dir: [options]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+      - name: Install dependencies
+        working-directory: ${{ matrix.work_dir }}
+        run: npm install
+      - name: Run tests
+        working-directory: ${{ matrix.work_dir }}
+        run: npm test
 
   build:
     name: Build
@@ -42,7 +62,7 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
-      - name: Install Dependencies
+      - name: Install dependencies
         working-directory: ${{ matrix.work_dir }}
         run: npm install
       - name: Build
