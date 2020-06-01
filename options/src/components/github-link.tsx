@@ -1,13 +1,8 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import GitHubIcon from '@material-ui/icons/GitHub';
-
 import { makeStyles } from '@material-ui/core/styles';
 
-interface GitHubLinkProps {
-  user: string;
-  repo: string;
-}
+import Button from '@material-ui/core/Button';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 const useStyles = makeStyles({
   icon: {
@@ -15,8 +10,15 @@ const useStyles = makeStyles({
   },
   button: {
     textTransform: 'none',
+    padding: 6,
+    margin: 1.5,
   },
 });
+
+interface GitHubLinkProps {
+  user: string;
+  repo: string;
+}
 
 export const GitHubLink: React.FC<GitHubLinkProps> = ({ user, repo }) => {
   const [starCount, setStarCount] = React.useState<number | undefined>();
