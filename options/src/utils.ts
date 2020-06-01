@@ -3,12 +3,15 @@ export type MatchRange = {
   end: number | undefined;
 };
 
+export const findPlaceholder = (text: string): RegExpMatchArray | null => {
+  return text.match(/\$\{([^{}]*)\}/);
+};
+
 export const replacePlaceholders = (
   body: string,
   ranges: MatchRange[] = [],
 ): [string, MatchRange[]] => {
-  const pattern = /\$\{([^{}]*)\}/;
-  const match = body.match(pattern);
+  const match = findPlaceholder(body);
   if (!match) {
     return [body, ranges];
   }

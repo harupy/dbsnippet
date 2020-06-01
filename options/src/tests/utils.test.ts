@@ -6,6 +6,19 @@ describe('utils', () => {
     expect(utils.nbsp(2)).toEqual('\u00A0\u00A0');
   });
 
+  it('findPlaceholder', () => {
+    let match: RegExpMatchArray | null;
+
+    // Contains match
+    match = utils.findPlaceholder('func(${x})');
+    expect(match?.[0]).toEqual('${x}');
+    expect(match?.[1]).toEqual('x');
+
+    // Does not contain match
+    match = utils.findPlaceholder('func(x)');
+    expect(match).toEqual(null);
+  });
+
   it('replacePlaceholders', () => {
     let body: string;
     let ranges: utils.MatchRange[];
