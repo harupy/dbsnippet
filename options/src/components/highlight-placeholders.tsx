@@ -1,27 +1,35 @@
 import * as React from 'react';
-import { findPlaceholders, splitByPlaceholder } from '../utils';
+import {
+  findPlaceholders,
+  splitByPlaceholder,
+  alternateConcat,
+} from '../utils';
 
 export const HighlightPlaceholders: React.FC<{
   body: string;
   backgroundColor: string;
 }> = ({ body, backgroundColor }) => {
-  const placeholders = findPlaceholders(body);
   const pieces = splitByPlaceholder(body);
+  const placeholders = findPlaceholders(body);
+  const concated = alternateConcat(pieces, placeholders);
 
   return (
     <div>
-      {pieces.map((piece, idx) =>
-        idx > placeholders.length - 1 ? (
-          <span key={piece}>{piece}</span>
-        ) : (
-          <span key={piece}>
-            {piece}
-            <span style={{ backgroundColor }} data-testid="highlight">
-              {placeholders[idx]}
-            </span>
+      {concated.map((text, idx) => {
+        const shouldHighlight = idx % 2 === 1;
+        const dataTestId = shouldHighlight ? 'highlight' : 'no-highlight';
+        const key = `${text}-${idx}`;
+
+        return shouldHighlight ? (
+          <span key={key} style={{ backgroundColor }} data-testid={dataTestId}>
+            {text}
           </span>
-        ),
-      )}
+        ) : (
+          <span key={key} data-testid={dataTestId}>
+            {text}
+          </span>
+        );
+      })}
     </div>
   );
 };
