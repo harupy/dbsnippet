@@ -5,9 +5,7 @@ import { NavBar } from '#/components/nav-bar';
 
 describe('NavBar', () => {
   it('should render without crashing', () => {
-    const wrapper = shallow(
-      <NavBar/>,
-    );
-    expect(wrapper).toHaveLength(1)
-  }
-}
+    const wrapper = shallow(<NavBar />);
+    expect(wrapper).toHaveLength(1);
+  });
+});
