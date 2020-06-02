@@ -30,3 +30,18 @@ export const sliceSnippet = (snippet: string): [string[], string[]] => {
 };
 
 export const nbsp = (repeat = 1): string => '\u00A0'.repeat(repeat);
+
+export const alternateConcat = <T>(arr1: T[], arr2: T[]): T[] => {
+  const res: T[] = [];
+  arr1.forEach((x1, idx1) => {
+    res.push(x1);
+    if (arr2[idx1]) {
+      res.push(arr2[idx1]);
+    }
+  });
+  return res;
+};
+
+export const ByDataTestId = (id: string): string => {
+  return `[data-testid="${id}"]`;
+};

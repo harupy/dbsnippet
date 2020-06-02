@@ -53,4 +53,21 @@ describe('utils', () => {
     pieces = utils.splitByPlaceholder('func().${x}');
     expect(pieces).toEqual(['func().', '']);
   });
+
+  it('alternateConcat', () => {
+    let res: string[];
+
+    res = utils.alternateConcat(['a', 'b'], ['1', '2']);
+    expect(res).toEqual(['a', '1', 'b', '2']);
+
+    res = utils.alternateConcat(['a', 'b'], ['1']);
+    expect(res).toEqual(['a', '1', 'b']);
+
+    res = utils.alternateConcat(['a'], ['1', '2']);
+    expect(res).toEqual(['a', '1']);
+  });
+
+  it('ByDataTestId', () => {
+    expect(utils.ByDataTestId('x')).toEqual('[data-testid="x"]');
+  });
 });

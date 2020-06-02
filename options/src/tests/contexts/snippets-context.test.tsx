@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
+
 import { SetState, ObjStr, SnippetItem } from '#/types';
 import { FromObj, ToObj } from '#/components/chrome';
-
 import {
   objToSnippets,
   snippetsToObj,
   SnippetsContext,
   SnippetsProvider,
-} from '../../contexts/snippets-context';
+} from '#/contexts/snippets-context';
+import { ByDataTestId } from '#/utils';
 
 describe('snippets-context', () => {
   const obj = {
@@ -75,10 +76,6 @@ const Button: React.FC<{ dataTestId: string; onClick: () => void }> = ({
       onClick={onClick}
     />
   );
-};
-
-const ByDataTestId = (id: string): string => {
-  return `[data-testid="${id}"]`;
 };
 
 const getSnippets = (w: ReactWrapper): SnippetItem[] => {
