@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import { NavBar } from '#/components/nav-bar';
 
-describe('HighlightPlaceholders', () => {
+describe('NavBar', () => {
   it('should render without crashing', () => {
     const wrapper = shallow(
       <NavBar/>,
