@@ -66,4 +66,8 @@ describe('utils', () => {
     res = utils.alternateConcat(['a'], ['1', '2']);
     expect(res).toEqual(['a', '1']);
   });
+
+  it('ByDataTestId', () => {
+    expect(utils.ByDataTestId('x')).toEqual('[data-testid="x"]');
+  });
 });

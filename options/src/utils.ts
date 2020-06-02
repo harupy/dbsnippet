@@ -41,3 +41,7 @@ export const alternateConcat = <T>(arr1: T[], arr2: T[]): T[] => {
   });
   return res;
 };
+
+export const ByDataTestId = (id: string): string => {
+  return `[data-testid="${id}"]`;
+};
