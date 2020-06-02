@@ -60,13 +60,10 @@ export const SnippetsProvider: React.FC<SnippetsProviderProps> = ({
   const [snippets, setSnippets] = React.useState<SnippetItem[]>([]);
   const [updated, setUpdated] = React.useState<boolean>(false);
 
-  const loadSnippets = useChromeStorageSyncGet<SnippetItem[]>(
-    setSnippets,
-    objToSnippets,
-  );
+  const loadSnippets = useChromeStorageSyncGet(setSnippets, objToSnippets);
 
   const saveSnippets = (): void => {
-    useChromeStorageSyncSet<SnippetItem[]>(snippetsToObj)(snippets);
+    useChromeStorageSyncSet(snippetsToObj)(snippets);
     setUpdated(false);
   };
 
